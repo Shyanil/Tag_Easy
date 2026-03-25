@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { cn } from '../lib/utils';
 
 import heroVideo from '../assets/Home.mp4';
+import brandImage from '../assets/image.png';
 
 const Home = () => {
     return (
@@ -92,7 +93,7 @@ const Home = () => {
                              <img 
                                 alt="Digital Architecture" 
                                 className="w-full h-full object-cover transition-all duration-1000" 
-                                src="src/assets/image.png"
+                                src={brandImage}
                             />
                         </div>
                         <div className="absolute -bottom-10 -left-10 bg-zinc-900 p-10 rounded-[2.5rem] border border-white/10 shadow-2xl hidden md:block">
