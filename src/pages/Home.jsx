@@ -91,8 +91,8 @@ const Home = () => {
                         <div className="aspect-square rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
                              <img 
                                 alt="Digital Architecture" 
-                                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" 
-                                src="src/assets/hero_art.png"
+                                className="w-full h-full object-cover transition-all duration-1000" 
+                                src="src/assets/image.png"
                             />
                         </div>
                         <div className="absolute -bottom-10 -left-10 bg-zinc-900 p-10 rounded-[2.5rem] border border-white/10 shadow-2xl hidden md:block">
