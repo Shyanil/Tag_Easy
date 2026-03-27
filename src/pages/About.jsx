@@ -1,5 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import TeamSection from '../components/TeamSection';
 
 const About = () => {
   return (
@@ -26,9 +26,9 @@ const About = () => {
       <section className="max-w-7xl mx-auto px-8 py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-7">
-            <h2 className="text-3xl md:text-5xl font-black mb-10 font-headline leading-tight text-white">The Architecture of <br /><span className="text-primary italic font-display">Resilience.</span></h2>
+            <h2 className="text-3xl md:text-5xl font-black mb-10 font-headline leading-tight text-white">The Engineering of <br /><span className="text-primary italic font-display">Resilience.</span></h2>
             <div className="space-y-8 text-lg text-zinc-400 leading-relaxed font-medium">
-              <p>Tag Easy wasn't built in a Silicon Valley garage. It was forged in the heat and heritage of Kolkata. We believe that software isn't just a utility—it's infrastructure that should last.</p>
+              <p>Tag Easy was forged in the heat of ambitious engineering challenges. We believe that software isn't just a utility—it's infrastructure that should last.</p>
               <p>Like the Victoria Memorial stands as a testament to craftsmanship, our digital products stand as benchmarks of performance and aesthetic excellence.</p>
             </div>
             
@@ -46,12 +46,14 @@ const About = () => {
           
           <div className="lg:col-span-5 space-y-8">
             <div className="bg-primary p-10 rounded-[2rem] text-background">
-              <p className="text-2xl font-display italic font-black leading-tight mb-6">"In Kolkata, we don't just build for today. We build for the soul."</p>
+              <p className="text-2xl font-display italic font-black leading-tight mb-6">"We don't just build for today. We build for longevity and scale."</p>
               <p className="font-label text-[10px] uppercase tracking-widest font-black opacity-60">— S. Mishra, Founder</p>
             </div>
           </div>
         </div>
       </section>
+
+      <TeamSection />
     </main>
   );
 };

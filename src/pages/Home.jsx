@@ -3,7 +3,12 @@ import { motion } from 'framer-motion';
 import { cn } from '../lib/utils';
 
 import heroVideo from '../assets/Home.mp4';
-import brandImage from '../assets/image.png';
+import experienceImage from '../assets/experience_new.png';
+import heroImage from '../assets/hero_new.png';
+import servicesImage from '../assets/services_new.png';
+import globalImage from '../assets/global_new.png';
+import provenResultsImage from '../assets/proven_results_new.png';
+import TeamSection from '../components/TeamSection';
 
 const Home = () => {
     return (
@@ -28,8 +33,8 @@ const Home = () => {
                         transition={{ duration: 1, ease: "easeOut" }}
                         className="text-2xl sm:text-4xl md:text-7xl font-black uppercase tracking-[0.2em] sm:tracking-[0.4em] text-white text-center leading-[1.2] drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] mb-8"
                     >
-                        ARCHITECTING THE <br/>
-                        <span className="text-primary italic font-display">DIGITAL FRONTIER</span>
+                        We build scalable <br/>
+                        <span className="text-primary italic font-display">digital systems</span>
                     </motion.h2>
                     
                     <motion.div
@@ -39,7 +44,7 @@ const Home = () => {
                         className="flex flex-col items-center gap-4"
                     >
                         <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.5em] text-white/50 bg-white/5 px-6 py-2 rounded-full border border-white/10 backdrop-blur-sm">
-                            Discover the Arsenal
+                            Helping businesses grow with performance-driven engineering, SEO, and AI solutions.
                         </span>
                     </motion.div>
                 </div>
@@ -59,7 +64,7 @@ const Home = () => {
                         transition={{ duration: 0.8 }}
                     >
                         <span className="inline-block mb-10 px-5 py-2 rounded-full border border-white/10 bg-white/5 text-primary text-[10px] font-black uppercase tracking-[0.4em]">
-                            Based in the Heart of Kolkata
+                            Built for Performance & Scale
                         </span>
                         
                         <div className="space-y-6 mb-12">
@@ -68,16 +73,16 @@ const Home = () => {
                                 <span className="text-primary-container italic font-display">OPTIMIZE.</span><br/>
                                 WE SCALE.
                             </h1>
-                            <p className="font-label text-zinc-500 uppercase tracking-[0.2em] sm:tracking-[0.4em] text-[10px] font-black italic">Digitally Engineered for the Global Frontier</p>
+                            <p className="font-label text-zinc-500 uppercase tracking-[0.2em] sm:tracking-[0.4em] text-[10px] font-black italic text-primary">Building scalable digital systems with performance, SEO, and growth at the core.</p>
                         </div>
                         
                         <p className="text-xl text-zinc-400 max-w-xl mb-12 leading-relaxed font-medium">
-                            Helping Kolkata businesses dominate the digital landscape with bespoke websites, high-performance apps, and aggressive SEO strategies.
+                            Building scalable digital systems with performance, SEO, and growth at the core.
                         </p>
                         
                         <div className="flex flex-col sm:flex-row gap-6">
                             <button className="px-10 py-5 bg-gradient-to-br from-primary to-primary-container text-background font-black rounded-2xl text-xs uppercase tracking-widest shadow-[0_20px_40px_rgba(255,83,91,0.2)] hover:scale-103 transition-all">
-                                Claim Your Free Audit
+                                Book your free 15-minute call
                             </button>
                         </div>
                     </motion.div>
@@ -91,14 +96,14 @@ const Home = () => {
                     >
                         <div className="aspect-square rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
                              <img 
-                                alt="Digital Architecture" 
+                                alt="Experience" 
                                 className="w-full h-full object-cover transition-all duration-1000" 
-                                src={brandImage}
+                                src={experienceImage}
                             />
                         </div>
                         <div className="absolute -bottom-10 -left-10 bg-zinc-900 p-10 rounded-[2.5rem] border border-white/10 shadow-2xl hidden md:block">
                             <div className="text-primary font-black text-5xl mb-2">10Y+</div>
-                            <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest leading-none">Market<br/>Authority</div>
+                            <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest leading-none">A decade of<br/>experience</div>
                         </div>
                     </motion.div>
                 </div>
@@ -111,18 +116,21 @@ const Home = () => {
                     <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
                         <div className="max-w-2xl">
                             <span className="font-label text-primary uppercase tracking-[0.4em] text-[10px] font-black mb-4 block">Expertise</span>
-                            <h2 className="text-4xl md:text-6xl font-black text-zinc-100 tracking-tighter">Forging Digital Empires.</h2>
+                            <h2 className="text-4xl md:text-6xl font-black text-zinc-100 tracking-tighter">Our Core Services</h2>
                         </div>
                         <div className="text-zinc-600 font-label text-[10px] font-black md:text-right uppercase tracking-[0.2em]">
-                            22.5726° N, 88.3639° E <br/> TACKLING THE MODERN WEB
+                            BUILDING THE FUTURE <br/> TACKLING THE MODERN WEB
                         </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[
-                            { title: 'Web Architecture', icon: 'language', desc: 'Premium, lightning-fast websites built for conversion and aesthetic authority.', points: ['Next.js & React', 'Headless E-commerce'], transform: '' },
-                            { title: 'SEO Dominance', icon: 'rocket_launch', desc: 'We don\'t just rank; we capture the intent that drives high-value revenue.', points: ['Technical Audits', 'Content Strategy'], transform: 'md:-translate-y-8' },
-                            { title: 'Mobile Scaling', icon: 'app_settings_alt', desc: 'Native and Cross-platform apps that keep your customers engaged 24/7.', points: ['iOS & Android', 'UX/UI Innovation'], transform: '' }
+                            { title: 'Website Development', icon: 'language', desc: 'Custom, scalable, and high-performance websites', points: ['Next.js & React', 'Headless E-commerce'] },
+                            { title: 'SEO', icon: 'rocket_launch', desc: 'Organic growth with technical and content-driven SEO', points: ['Technical Audits', 'Content Strategy'] },
+                            { title: 'PPC Advertising', icon: 'ads_click', desc: 'Performance marketing with measurable ROI', points: ['Google Ads', 'Meta Ads'] },
+                            { title: 'Mobile App Development', icon: 'app_settings_alt', desc: 'Scalable Android and iOS applications', points: ['iOS & Android', 'UX/UI Innovation'] },
+                            { title: 'AI & Machine Learning', icon: 'psychology', desc: 'Intelligent systems built for automation and insights', points: ['Automation', 'Data Insights'] },
+                            { title: 'Custom AI Training', icon: 'model_training', desc: 'Tailored AI models based on business use-cases', points: ['Model Fine-tuning', 'Niche AI'] }
                         ].map((service, i) => (
                             <motion.div 
                                 key={i}
@@ -130,10 +138,7 @@ const Home = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
-                                className={cn(
-                                    "bg-white/5 backdrop-blur-xl p-10 rounded-3xl group hover:bg-white/10 transition-all duration-500 border border-white/5",
-                                    service.transform
-                                )}
+                                className="bg-white/5 backdrop-blur-xl p-10 rounded-3xl group hover:bg-white/10 transition-all duration-500 border border-white/5"
                             >
                                 <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
                                     <span className="material-symbols-outlined text-primary text-4xl">{service.icon}</span>
@@ -162,7 +167,7 @@ const Home = () => {
                         <img 
                             alt="Our Tech Team" 
                             className="rounded-3xl grayscale hover:grayscale-0 transition-all duration-1000 shadow-[0_32px_64px_rgba(0,0,0,0.5)] border border-white/5" 
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD6E-w9de07GkvJptXkubq7bJCcYEOnX7ou9pQ9gzGGSJupqXW7UOyr_2IhquQeVb-axEtfeD38kpPJ9lKJTucmBGjY1UahYaWbf-5T6FNnvh3v0iWturjDSNi3-JeDP-xWt3gVaHAM8uTL6nK2k60J_3RjyEm7MZOLKBzjyJkGUfF5z1sRzB7u0eIT3uhJPjxuPm3GWqyfhZwnN9fjiXWk8BZwUl2q-cL2VllwVXCumZ77EKpUk8bQnKeiLc19sMJj1Vv7ISne9M6"
+                            src={experienceImage}
                         />
                         <div className="absolute -bottom-8 -right-8 bg-zinc-900 p-8 rounded-3xl border border-white/10 shadow-2xl">
                             <p className="text-primary font-black text-5xl mb-2 tracking-tighter">98%</p>
@@ -171,11 +176,11 @@ const Home = () => {
                     </div>
                     <div>
                         <span className="font-label text-primary uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">The Advantage</span>
-                        <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-zinc-100 tracking-tighter mb-12 leading-[1.1]">Global Standards, <br/><span className="text-primary italic font-display text-3xl sm:text-4xl md:text-5xl">Kolkata Spirit</span>.</h2>
+                        <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-zinc-100 tracking-tighter mb-12 leading-[1.1]">Built with global standards, <br/><span className="text-primary italic font-display text-3xl sm:text-4xl md:text-5xl">Engineered for performance</span>.</h2>
                         <div className="space-y-12">
                             {[
-                                { title: 'High-Velocity Delivery', icon: 'bolt', desc: 'We operate with agile precision, ensuring your project moves from blueprint to launch in record time.' },
-                                { title: 'Local Market Intelligence', icon: 'map', desc: 'Deep understanding of Kolkata\'s consumer psychology combined with international design trends.' },
+                                { title: 'Global Performance Engineering', icon: 'bolt', desc: 'We operate with agile precision, ensuring your project moves from blueprint to launch in record time.' },
+                                { title: 'Scalable Architecture', icon: 'map', desc: 'Building scalable digital systems with performance, SEO, and growth at the core.' },
                                 { title: 'Radical Transparency', icon: 'verified', desc: 'Real-time dashboards, weekly audits, and no hidden technical jargon. You see what we see.' }
                             ].map((item, i) => (
                                 <motion.div 
@@ -205,23 +210,24 @@ const Home = () => {
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-24">
                         <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-zinc-100 tracking-tighter mb-6 leading-none">Proven Results.</h2>
-                        <p className="text-zinc-500 max-w-xl mx-auto font-medium text-lg">Real numbers from businesses in Park Street, Salt Lake, and beyond.</p>
+                        <p className="text-zinc-500 max-w-xl mx-auto font-medium text-lg">Proven results through real-world deployments, including our AI-powered Virtual Assistant system.</p>
+                        <p className="text-zinc-400 mt-4 max-w-lg mx-auto font-normal">Designed to automate workflows, improve productivity, and scale business operations.</p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                         {[
                             { 
                                 type: 'E-COMMERCE', 
                                 title: 'Jewelry Retailer Scale', 
-                                desc: 'Increased monthly organic revenue by 400% through aggressive technical SEO and a revamped UX architecture.', 
+                                desc: 'Increased monthly organic revenue by 400% through aggressive technical SEO and revamped UX design.', 
                                 stats: [{ l: 'Traffic Growth', v: '+312%' }, { l: 'Load Speed', v: '0.8s' }],
-                                img: "https://lh3.googleusercontent.com/aida-public/AB6AXuAz0bbbzawDjIsEkeOMx7QYXFb_bSBxr4vybKeDADRLA8-vXpnnNTim7ApAN2f_9WJBk7yp6_gaMwTReln28pgrNnr3Ij9oAiLTEoDWoQPXrOwvl0WYBJnF2shv5NLZGanw1WHRfs2QGpcMo0Lsp83B3T0KOlQ1euCLIuS3L5g5FeFulKTftUAvdeZL1D7TtPm_zX8vPvUSoFqJjj2teCOJ3cr5W_C8Pxth17-PIFxtROaJbA56YT0Bfay94AZXI9tsMdn1kA8JAbO_"
+                                img: servicesImage
                             },
                             { 
-                                type: 'REAL ESTATE', 
-                                title: 'Property Portal UX', 
-                                desc: 'Reduced bounce rates by 65% for a luxury Kolkata real estate developer via custom interactive map integration.', 
-                                stats: [{ l: 'Leads/Mo', v: '2.4k' }, { l: 'Conversion', v: '+18%' }],
-                                img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBLrKPdD4y6luPLGXxhMyXeF7NloQ86PRRuL0xNCcUpPSquPQJk0ZKcEhinSdLZridjB1HnkdHXzG783C7GU05nNT5pqeVZqfEfvhg2LLsc2kwzdJ_d1ApG8BAqomP80Y1V8bRurbJYt9W5CwW2JMKInFPX1B6A-Ac-xjvi_Vid3XBhOzW7oqonVZy4ZZi0_GT6JLGWLOEg0P8FJBPcuZu8nMIxwnG6V6BzG_dfjSHfgvE9-ZYyxGAChWVuqvls4Cx4K9Nptzwh_uY9"
+                                type: 'AI & AUTOMATION', 
+                                title: 'AI Virtual Assistant', 
+                                desc: 'Designed to automate workflows, improve productivity, and scale business operations.', 
+                                stats: [{ l: 'Efficiency', v: '+85%' }, { l: 'Cost Reduction', v: '40%' }],
+                                img: provenResultsImage
                             }
                         ].map((study, i) => (
                             <motion.div 
@@ -274,6 +280,8 @@ const Home = () => {
                     ))}
                 </div>
             </section>
+
+            <TeamSection />
 
             {/* Free SEO Audit Banner */}
             <section className="py-32 px-8">

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const CaseStudies = () => {
     const projects = [
         { title: "Metropolitan Scale", cat: "Infrastructure", stats: "400% Growth" },
-        { title: "Bespoke Commerce", cat: "Architecture", stats: "98% Efficiency" },
+        { title: "Bespoke Commerce", cat: "Digital Systems", stats: "98% Efficiency" },
         { title: "Legacy Migration", cat: "Engineering", stats: "0 Downtime" }
     ];
 

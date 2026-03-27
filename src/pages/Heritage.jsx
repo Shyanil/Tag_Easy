@@ -25,7 +25,7 @@ const Heritage = () => {
       <section className="max-w-7xl mx-auto px-8 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div>
             <h2 className="text-4xl md:text-5xl font-black mb-10 font-headline leading-tight text-white">Software as <br /><span className="text-primary italic font-display">Artistry.</span></h2>
-            <p className="text-lg text-zinc-500 font-medium leading-relaxed">Kolkata isn't just our location; it's our source code. We draw inspiration from the city's architectural evolution to create websites that are both timeless and high-performing.</p>
+            <p className="text-lg text-zinc-500 font-medium leading-relaxed">Performance isn't just a metric; it's our source code. We draw inspiration from global engineering standards to create websites that are both timeless and high-performing.</p>
         </div>
         <div className="bg-zinc-950 p-12 rounded-[2rem] border border-white/5 flex flex-col items-center justify-center text-center">
             <span className="material-symbols-outlined text-zinc-700 text-9xl mb-8">temple_hindu</span>

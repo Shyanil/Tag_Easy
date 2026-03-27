@@ -16,7 +16,7 @@
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.kolkata-motif {
+.performance-motif {
   mask-image: linear-gradient(to top, transparent, black);
   opacity: 0.15;
 }

@@ -13,9 +13,7 @@ export default function Footer() {
 
   const socialLinks = [
     { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
     { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
   ];
 
   return (
@@ -92,10 +90,10 @@ export default function Footer() {
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-zinc-600 text-xs font-label">
-              © 2024 TAG EASY | Thynk Unlimited. Engineered in Kolkata.
+              © 2024 TAG EASY | Thynk Unlimited. Built for performance.
             </p>
             <div className="flex gap-8 text-xs font-label text-zinc-600">
-              <a href="#" className="hover:text-white transition-colors">Privacy Architecture</a>
+              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Service Terms</a>
             </div>
           </div>

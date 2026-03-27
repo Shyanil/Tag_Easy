@@ -17,9 +17,9 @@ const Contact = () => {
                 visible: { transition: { staggerChildren: 0.1 } }
             }}
         >
-            <motion.span variants={itemVariants} className="font-label text-primary tracking-[0.4em] text-[9px] uppercase font-bold block mb-6">Contact Architecture</motion.span>
+            <motion.span variants={itemVariants} className="font-label text-primary tracking-[0.4em] text-[9px] uppercase font-bold block mb-6">Building Scalable Systems</motion.span>
             <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white leading-[1.1] mb-10 tracking-tight">Ready to <br /><span className="text-primary italic font-display">Manifest?</span></motion.h1>
-            <motion.p variants={itemVariants} className="text-lg text-zinc-500 font-medium leading-relaxed mb-12 max-w-md">Set the foundation for your project's digital scale with Kolkata's premier engineers.</motion.p>
+            <motion.p variants={itemVariants} className="text-lg text-zinc-500 font-medium leading-relaxed mb-12 max-w-md">Set the foundation for your project's digital scale with premier engineering.</motion.p>
             
             <div className="space-y-10">
                 <div className="flex items-center gap-6 group">

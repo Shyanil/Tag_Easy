@@ -6,6 +6,7 @@ import CaseStudies from './pages/CaseStudies';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Heritage from './pages/Heritage';
+import TeamMember from './pages/TeamMember';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="heritage" element={<Heritage />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="team/:slug" element={<TeamMember />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
