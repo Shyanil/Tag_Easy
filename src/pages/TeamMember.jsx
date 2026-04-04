@@ -9,7 +9,8 @@ import {
   Youtube, 
   MessageSquare, 
   Share2,
-  ArrowLeft
+  ArrowLeft,
+  Mail
 } from 'lucide-react';
 import { teamMembers } from '../lib/teamData';
 
@@ -29,6 +30,7 @@ const TeamMember = () => {
     { key: 'youtube', icon: Youtube, label: 'YouTube' },
     { key: 'reddit', icon: MessageSquare, label: 'Reddit' },
     { key: 'quora', icon: Share2, label: 'Quora' },
+    { key: 'email', icon: Mail, label: 'Email' },
   ];
 
   return (
@@ -80,6 +82,42 @@ const TeamMember = () => {
                 {member.bio}
               </p>
             </div>
+
+            {member.experience && (
+              <div className="mb-12 max-w-xl">
+                <h3 className="text-xl font-black text-white mb-6 uppercase tracking-widest text-[14px]">Experience</h3>
+                <ul className="space-y-6">
+                  {member.experience.map((exp, idx) => (
+                    <li key={idx} className="text-zinc-400 font-label border-l-2 border-white/10 pl-4 py-1">
+                      <strong className="text-zinc-200 text-lg block mb-1">{exp.title}</strong>
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                        <span className="text-primary font-medium">{exp.company}</span>
+                        <span className="hidden sm:inline text-zinc-600">•</span>
+                        <span className="text-zinc-500 text-sm uppercase tracking-wide">{exp.period}</span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {member.education && (
+              <div className="mb-16 max-w-xl">
+                <h3 className="text-xl font-black text-white mb-6 uppercase tracking-widest text-[14px]">Education</h3>
+                <ul className="space-y-6">
+                  {member.education.map((edu, idx) => (
+                    <li key={idx} className="text-zinc-400 font-label border-l-2 border-white/10 pl-4 py-1">
+                      <strong className="text-zinc-200 text-lg block mb-1">{edu.degree}</strong>
+                      <div className="flex flex-col sm:flex-row sm:items-start gap-1 sm:gap-3">
+                        <span className="text-primary-container font-medium">{edu.institution}</span>
+                        <span className="hidden sm:inline text-zinc-600 mt-0.5">•</span>
+                        <span className="text-zinc-500 text-sm uppercase tracking-wide mt-0.5">{edu.period}</span>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             <div className="flex flex-wrap gap-4">
               {socialIcons.map((social) => {

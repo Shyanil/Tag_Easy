@@ -4,23 +4,87 @@ export const teamMembers = [
     name: 'Lokesh Choudhury',
     role: 'Founder & Director',
     bio: 'Lokesh leads the vision and strategic direction of Tag Easy, bringing over a decade of experience in digital engineering and business growth.',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400&h=500',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
     socials: {
-      linkedin: '#',
+      linkedin: 'https://www.linkedin.com/in/lokesh-choudhury-67516437a/',
       github: '#',
       facebook: '#',
       instagram: '#',
       youtube: '#',
       reddit: '#',
       quora: '#'
-    }
+    },
+    experience: [
+      {
+        title: 'SEO-Consultant & Founder',
+        company: 'TAG EASY LLP',
+        period: 'Sep 2021 - Present, Remote / Kolkata'
+      },
+      {
+        title: 'Head of Digital Marketing',
+        company: 'SquashCode',
+        period: 'Jun 2025 - Mar 2026, On-site'
+      },
+      {
+        title: 'Digital Marketing Manager',
+        company: 'SquashCode',
+        period: 'Feb 2025 - May 2025, Kolkata'
+      },
+      {
+        title: 'Project Manager - IT & MarTech',
+        company: 'APG Medicare LLP',
+        period: 'Jun 2023 - Jan 2025, Hybrid'
+      },
+      {
+        title: 'Sr Analyst (Google WebTech)',
+        company: 'Cognizant',
+        period: 'Apr 2023 - Jun 2023, On-site'
+      },
+      {
+        title: 'Salesforce CRM Admin',
+        company: 'WhiteHat Jr',
+        period: 'Aug 2022 - Apr 2023, On-site'
+      },
+      {
+        title: 'Operations Team Lead',
+        company: 'Tech Mahindra',
+        period: 'Jun 2020 - Sep 2021, On-site'
+      },
+      {
+        title: 'Search Engine Optimization Team Lead',
+        company: 'gozo',
+        period: 'Oct 2018 - May 2020, On-site'
+      }
+    ],
+    education: [
+      {
+        degree: 'Master of Science - MS, Artificial Intelligence',
+        institution: 'Purdue Global',
+        period: 'Apr 2020 – Dec 2023, Grade: A'
+      },
+      {
+        degree: 'Bachelor of Technology - BTech, Mechanical Engineering',
+        institution: 'Maulana Abul Kalam Azad University of Technology (MAKAUT, WB)',
+        period: 'Jul 2014 – Aug 2017, Grade: 7.35'
+      },
+      {
+        degree: 'High School Diploma, Mechanical Engineering',
+        institution: 'Saroj Mohan Institute of Technology',
+        period: 'Nov 2011 – Oct 2014, Grade: 70%'
+      },
+      {
+        degree: "Associate's degree, 10th",
+        institution: "St. Xavier's Institution",
+        period: 'Apr 2006 – Apr 2008, Grade: 80%'
+      }
+    ]
   },
   {
     slug: 'Sam B',
     name: 'Sam  B.',
     role: ' QA Engineering Head',
     bio: 'Sam ensures the highest quality standards for all our deployments, overseeing complex QA architectures and testing workflows.',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400&h=500',
+    image: '/SAM.jpeg',
     socials: {
       linkedin: '#',
       github: '#',
@@ -36,7 +100,7 @@ export const teamMembers = [
     name: 'Antara Sadhukhan',
     role: 'Associate Partner',
     bio: 'Antara focuses on strategic partnerships and operational excellence, ensuring seamless collaboration between technical teams and business goals.',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=500',
+    image: '/female_placeholder.png',
     socials: {
       linkedin: '#',
       github: '#',
@@ -52,15 +116,40 @@ export const teamMembers = [
     name: 'Shyanil Mishra',
     role: 'Lead Software Architect',
     bio: 'Shyanil is the lead architect for our most complex digital systems, specializing in scalable cloud infrastructures and high-performance engineering.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=500',
+    image: '/shyanil.jpeg',
+    experience: [
+      {
+        title: 'Operation Executive',
+        company: 'IntraSoft Technologies Limited',
+        period: 'Feb 2026 – Present, Kolkata'
+      },
+      {
+        title: 'Business Automation Developer',
+        company: 'SquashCode',
+        period: 'Nov 2024 – Feb 2026, Greater Kolkata Area'
+      },
+      {
+        title: 'Intern',
+        company: 'SquashCode',
+        period: 'Jul 2024 – Nov 2024, Remote'
+      }
+    ],
+    education: [
+      {
+        degree: 'M.Tech (AI & Data Science)',
+        institution: 'Indian Institute of Information Technology, Kalyani',
+        period: '2025 – 2028'
+      },
+      {
+        degree: 'B.Tech (CSE)',
+        institution: 'Maulana Abul Kalam Azad University of Technology, West Bengal',
+        period: '2020 – 2024, CGPA: 8.7'
+      }
+    ],
     socials: {
-      linkedin: '#',
-      github: '#',
-      facebook: '#',
-      instagram: '#',
-      youtube: '#',
-      reddit: '#',
-      quora: '#'
+      linkedin: 'https://www.linkedin.com/in/shyanilmishra/',
+      github: 'https://github.com/Shyanil',
+      email: 'mailto:shyanil@tageasy.org'
     }
   },
   {
@@ -68,7 +157,7 @@ export const teamMembers = [
     name: 'Ananya Sadhukhan',
     role: 'Frontend Developer',
     bio: 'Ananya specializes in creating immersive and performant user interfaces using modern frameworks and cutting-edge design patterns.',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400&h=500',
+    image: '/female_placeholder.png',
     socials: {
       linkedin: '#',
       github: '#',
@@ -84,7 +173,7 @@ export const teamMembers = [
     name: 'Ankita Singh',
     role: 'Frontend Developer (Collaborator)',
     bio: 'Ankita brings fresh perspectives to our UI/UX processes, collaborating on high-impact frontend projects and interaction models.',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400&h=500',
+    image: '/female_placeholder.png',
     socials: {
       linkedin: '#',
       github: '#',
@@ -100,7 +189,7 @@ export const teamMembers = [
     name: 'Sandip Majumder',
     role: 'Creative Head',
     bio: 'Sandip oversees the artistic direction at Tag Easy, ensuring every project balances technical power with aesthetic dominance.',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=500',
+    image: '/Sandip.jpeg',
     socials: {
       linkedin: '#',
       github: '#',
@@ -116,7 +205,7 @@ export const teamMembers = [
     name: 'Arpita Das',
     role: 'Business Development Manager',
     bio: 'Arpita drives growth and client relations, identifying new opportunities where Tag Easy’s engineering can solve business challenges.',
-    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&q=80&w=400&h=500',
+    image: '/female_placeholder.png',
     socials: {
       linkedin: '#',
       github: '#',
@@ -132,7 +221,7 @@ export const teamMembers = [
     name: 'Ankur Roy Chowdhury',
     role: 'Creative & Video Production',
     bio: 'Ankur leads our multi-media content creation, focusing on high-end video production and creative storytelling for digital platforms.',
-    image: 'https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&q=80&w=400&h=500',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
     socials: {
       linkedin: '#',
       github: '#',
