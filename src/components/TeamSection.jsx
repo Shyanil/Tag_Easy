@@ -5,14 +5,15 @@ import { teamMembers } from '../lib/teamData';
 
 const TeamSection = () => {
   return (
-    <section className="py-32 px-8 bg-zinc-950/50">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-32 px-6 bg-black relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02)_0%,_transparent_70%)] pointer-events-none" />
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-24">
           <motion.h2 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-black text-white tracking-tighter mb-6"
+            className="text-4xl md:text-6xl font-instrument text-white tracking-tight mb-6"
           >
             Meet the Founders & Team
           </motion.h2>
@@ -20,45 +21,37 @@ const TeamSection = () => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-zinc-500 max-w-xl mx-auto font-medium text-lg leading-relaxed"
+            className="text-white/40 max-w-xl mx-auto font-medium text-lg leading-relaxed"
           >
             The people behind our technology, strategy, and execution.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {teamMembers.map((member, i) => (
             <motion.div 
               key={member.slug}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-              whileHover={{ 
-                y: -10,
-                scale: 1.03,
-                transition: { duration: 0.3 }
-              }}
-              className="group"
+              transition={{ delay: i * 0.1 }}
+              className="liquid-glass rounded-3xl overflow-hidden group flex flex-col h-full"
             >
-              <Link to={`/team/${member.slug}`} className="block h-full">
-                <div className="bg-zinc-900 border border-white/5 rounded-[2rem] overflow-hidden p-3 h-full group-hover:border-primary/20 group-hover:shadow-[0_20px_40px_rgba(255,83,91,0.1)] transition-all flex flex-col">
-                  <div className="aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-6 relative">
-                    <img 
-                      src={member.image} 
-                      alt={member.name}
-                      className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-60"></div>
-                  </div>
-                  <div className="px-4 pb-4 mt-auto">
-                    <h3 className="text-xl font-black text-white mb-2 leading-tight group-hover:text-primary transition-colors">
-                      {member.name}
-                    </h3>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-zinc-600">
-                      {member.role}
-                    </p>
-                  </div>
+              <Link to={`/team/${member.slug}`} className="block flex-1 flex flex-col">
+                <div className="aspect-[3/4] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+                <div className="p-6 mt-auto">
+                  <h3 className="text-xl font-instrument text-white mb-1 group-hover:italic transition-all">
+                    {member.name}
+                  </h3>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold">
+                    {member.role}
+                  </p>
                 </div>
               </Link>
             </motion.div>

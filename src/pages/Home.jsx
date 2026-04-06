@@ -1,311 +1,444 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { 
+  ArrowRight, Globe, Instagram, Twitter, ArrowUpRight, 
+  Phone, Server, Cpu, Zap, BarChart3, Clock, 
+  ShieldCheck, LayoutDashboard, Monitor
+} from 'lucide-react';
 import { cn } from '../lib/utils';
-
-import heroVideo from '../assets/Home.mp4';
-import experienceImage from '../assets/experience_new.png';
-import heroImage from '../assets/hero_new.png';
-import servicesImage from '../assets/services_new.png';
-import globalImage from '../assets/global_new.png';
-import provenResultsImage from '../assets/proven_results_new.png';
 import TeamSection from '../components/TeamSection';
 
-const Home = () => {
-    return (
-        <div className="overflow-x-hidden bg-background min-h-screen selection:bg-primary-container selection:text-white">
-            {/* Full Screen Cinematic Video Hero */}
-            <section className="relative h-screen w-full overflow-hidden bg-black">
-                <video 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline 
-                    className="w-full h-full object-cover"
-                >
-                    <source src={heroVideo} type="video/mp4" />
-                </video>
-                
-                {/* Central High-Impact Headline */}
-                <div className="absolute inset-0 z-40 flex flex-col items-center justify-center px-6">
-                    <motion.h2 
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1, ease: "easeOut" }}
-                        className="text-2xl sm:text-4xl md:text-7xl font-black uppercase tracking-[0.2em] sm:tracking-[0.4em] text-white text-center leading-[1.2] drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] mb-8"
-                    >
-                        We build scalable <br/>
-                        <span className="text-primary italic font-display">digital systems</span>
-                    </motion.h2>
-                    
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
-                        className="flex flex-col items-center gap-4"
-                    >
-                        <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.5em] text-white/50 bg-white/5 px-6 py-2 rounded-full border border-white/10 backdrop-blur-sm">
-                            Helping businesses grow with performance-driven engineering, SEO, and AI solutions.
-                        </span>
-                    </motion.div>
-                </div>
+// --- Sub-components ---
 
-                <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce flex flex-col items-center gap-4">
-                    <span className="material-symbols-outlined text-white/50 text-4xl">keyboard_double_arrow_down</span>
-                </div>
-            </section>
+const SectionContainer = ({ children, className, id }) => (
+  <section id={id} className={cn("bg-black relative overflow-hidden px-6 py-24 md:py-32", className)}>
+    <div className="max-w-7xl mx-auto">
+      {children}
+    </div>
+  </section>
+);
 
-            {/* Strategic Statement Section - Now separate from Video */}
-            <section className="relative py-32 md:py-48 flex items-center justify-center px-8 border-b border-white/5">
-                <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                    <motion.div 
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <span className="inline-block mb-10 px-5 py-2 rounded-full border border-white/10 bg-white/5 text-primary text-[10px] font-black uppercase tracking-[0.4em]">
-                            Built for Performance & Scale
-                        </span>
-                        
-                        <div className="space-y-6 mb-12">
-                            <h1 className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-zinc-100 leading-[0.85]">
-                                WE BUILD.<br/>
-                                <span className="text-primary-container italic font-display">OPTIMIZE.</span><br/>
-                                WE SCALE.
-                            </h1>
-                            <p className="font-label text-zinc-500 uppercase tracking-[0.2em] sm:tracking-[0.4em] text-[10px] font-black italic text-primary">Building scalable digital systems with performance, SEO, and growth at the core.</p>
-                        </div>
-                        
-                        <p className="text-xl text-zinc-400 max-w-xl mb-12 leading-relaxed font-medium">
-                            Building scalable digital systems with performance, SEO, and growth at the core.
-                        </p>
-                        
-                        <div className="flex flex-col sm:flex-row gap-6">
-                            <button className="px-10 py-5 bg-gradient-to-br from-primary to-primary-container text-background font-black rounded-2xl text-xs uppercase tracking-widest shadow-[0_20px_40px_rgba(255,83,91,0.2)] hover:scale-103 transition-all">
-                                Book your free 15-minute call
-                            </button>
-                        </div>
-                    </motion.div>
+const GlassCard = ({ children, className }) => (
+  <div className={cn("liquid-glass rounded-[2rem] p-8 h-full transition-all duration-500 hover:bg-white/[0.03]", className)}>
+    {children}
+  </div>
+);
 
-                    <motion.div 
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="relative"
-                    >
-                        <div className="aspect-square rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
-                             <img 
-                                alt="Experience" 
-                                className="w-full h-full object-cover transition-all duration-1000" 
-                                src={experienceImage}
-                            />
-                        </div>
-                        <div className="absolute -bottom-10 -left-10 bg-zinc-900 p-10 rounded-[2.5rem] border border-white/10 shadow-2xl hidden md:block">
-                            <div className="text-primary font-black text-5xl mb-2">10Y+</div>
-                            <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest leading-none">A decade of<br/>experience</div>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-                    
+// --- Brand Marquee ---
 
-            {/* Services Overview */}
-            <section className="py-32 px-8 bg-zinc-950 relative border-t border-white/5">
-                <div className="max-w-7xl mx-auto">
-                    <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
-                        <div className="max-w-2xl">
-                            <span className="font-label text-primary uppercase tracking-[0.4em] text-[10px] font-black mb-4 block">Expertise</span>
-                            <h2 className="text-4xl md:text-6xl font-black text-zinc-100 tracking-tighter">Our Core Services</h2>
-                        </div>
-                        <div className="text-zinc-600 font-label text-[10px] font-black md:text-right uppercase tracking-[0.2em]">
-                            BUILDING THE FUTURE <br/> TACKLING THE MODERN WEB
-                        </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {[
-                            { title: 'Website Development', icon: 'language', desc: 'Custom, scalable, and high-performance websites', points: ['Next.js & React', 'Headless E-commerce'] },
-                            { title: 'SEO', icon: 'rocket_launch', desc: 'Organic growth with technical and content-driven SEO', points: ['Technical Audits', 'Content Strategy'] },
-                            { title: 'PPC Advertising', icon: 'ads_click', desc: 'Performance marketing with measurable ROI', points: ['Google Ads', 'Meta Ads'] },
-                            { title: 'Mobile App Development', icon: 'app_settings_alt', desc: 'Scalable Android and iOS applications', points: ['iOS & Android', 'UX/UI Innovation'] },
-                            { title: 'AI & Machine Learning', icon: 'psychology', desc: 'Intelligent systems built for automation and insights', points: ['Automation', 'Data Insights'] },
-                            { title: 'Custom AI Training', icon: 'model_training', desc: 'Tailored AI models based on business use-cases', points: ['Model Fine-tuning', 'Niche AI'] }
-                        ].map((service, i) => (
-                            <motion.div 
-                                key={i}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.1 }}
-                                className="bg-white/5 backdrop-blur-xl p-10 rounded-3xl group hover:bg-white/10 transition-all duration-500 border border-white/5"
-                            >
-                                <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
-                                    <span className="material-symbols-outlined text-primary text-4xl">{service.icon}</span>
-                                </div>
-                                <h3 className="text-2xl font-black text-white mb-4 tracking-tight">{service.title}</h3>
-                                <p className="text-zinc-500 leading-relaxed mb-10 font-medium">{service.desc}</p>
-                                <ul className="space-y-4 text-[10px] font-black uppercase tracking-widest text-zinc-600">
-                                    {service.points.map(p => (
-                                        <li key={p} className="flex items-center gap-3">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-primary/40"></span>
-                                            {p}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Why Choose Us */}
-            <section className="py-40 px-8 bg-background overflow-hidden">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-                    <div className="relative group">
-                        <div className="absolute -top-10 -left-10 w-64 h-64 bg-primary/10 blur-[120px] rounded-full group-hover:bg-primary/20 transition-all duration-1000"></div>
-                        <img 
-                            alt="Our Tech Team" 
-                            className="rounded-3xl grayscale hover:grayscale-0 transition-all duration-1000 shadow-[0_32px_64px_rgba(0,0,0,0.5)] border border-white/5" 
-                            src={experienceImage}
-                        />
-                        <div className="absolute -bottom-8 -right-8 bg-zinc-900 p-8 rounded-3xl border border-white/10 shadow-2xl">
-                            <p className="text-primary font-black text-5xl mb-2 tracking-tighter">98%</p>
-                            <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Client Retention</p>
-                        </div>
-                    </div>
-                    <div>
-                        <span className="font-label text-primary uppercase tracking-[0.4em] text-[10px] font-black mb-6 block">The Advantage</span>
-                        <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-zinc-100 tracking-tighter mb-12 leading-[1.1]">Built with global standards, <br/><span className="text-primary italic font-display text-3xl sm:text-4xl md:text-5xl">Engineered for performance</span>.</h2>
-                        <div className="space-y-12">
-                            {[
-                                { title: 'Global Performance Engineering', icon: 'bolt', desc: 'We operate with agile precision, ensuring your project moves from blueprint to launch in record time.' },
-                                { title: 'Scalable Architecture', icon: 'map', desc: 'Building scalable digital systems with performance, SEO, and growth at the core.' },
-                                { title: 'Radical Transparency', icon: 'verified', desc: 'Real-time dashboards, weekly audits, and no hidden technical jargon. You see what we see.' }
-                            ].map((item, i) => (
-                                <motion.div 
-                                    key={i}
-                                    initial={{ opacity: 0, x: 20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.1 }}
-                                    className="flex gap-8 group"
-                                >
-                                    <div className="shrink-0 w-14 h-14 rounded-2xl border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary/5 transition-colors">
-                                        <span className="material-symbols-outlined text-2xl">{item.icon}</span>
-                                    </div>
-                                    <div>
-                                        <h4 className="text-xl font-black text-zinc-100 mb-2">{item.title}</h4>
-                                        <p className="text-zinc-500 font-medium leading-relaxed">{item.desc}</p>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Case Study Preview */}
-            <section className="py-40 px-8 bg-zinc-950 border-y border-white/5">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-24">
-                        <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-zinc-100 tracking-tighter mb-6 leading-none">Proven Results.</h2>
-                        <p className="text-zinc-500 max-w-xl mx-auto font-medium text-lg">Proven results through real-world deployments, including our AI-powered Virtual Assistant system.</p>
-                        <p className="text-zinc-400 mt-4 max-w-lg mx-auto font-normal">Designed to automate workflows, improve productivity, and scale business operations.</p>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        {[
-                            { 
-                                type: 'E-COMMERCE', 
-                                title: 'Jewelry Retailer Scale', 
-                                desc: 'Increased monthly organic revenue by 400% through aggressive technical SEO and revamped UX design.', 
-                                stats: [{ l: 'Traffic Growth', v: '+312%' }, { l: 'Load Speed', v: '0.8s' }],
-                                img: servicesImage
-                            },
-                            { 
-                                type: 'AI & AUTOMATION', 
-                                title: 'AI Virtual Assistant', 
-                                desc: 'Designed to automate workflows, improve productivity, and scale business operations.', 
-                                stats: [{ l: 'Efficiency', v: '+85%' }, { l: 'Cost Reduction', v: '40%' }],
-                                img: provenResultsImage
-                            }
-                        ].map((study, i) => (
-                            <motion.div 
-                                key={i}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                className="group relative overflow-hidden rounded-[2.5rem] bg-zinc-900/40 border border-white/5"
-                            >
-                                <div className="aspect-[16/10] relative overflow-hidden">
-                                    <img 
-                                        alt={study.title} 
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 opacity-40 grayscale group-hover:grayscale-0 group-hover:opacity-60" 
-                                        src={study.img}
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent"></div>
-                                </div>
-                                <div className="p-10 relative -mt-24">
-                                    <div className="bg-primary-container text-background inline-block px-4 py-1 rounded-lg mb-6 font-black text-[10px] uppercase tracking-widest">{study.type}</div>
-                                    <h3 className="text-3xl font-black text-white mb-6 tracking-tight leading-none">{study.title}</h3>
-                                    <p className="text-zinc-500 mb-10 font-medium leading-relaxed">{study.desc}</p>
-                                    <div className="grid grid-cols-2 gap-8 border-t border-white/5 pt-10">
-                                        {study.stats.map(s => (
-                                            <div key={s.l}>
-                                                <p className="text-[10px] font-black text-zinc-600 uppercase tracking-widest mb-1">{s.l}</p>
-                                                <p className="text-3xl font-black text-primary tracking-tighter">{s.v}</p>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Stats Ticker */}
-            <section className="py-24 px-8 bg-background">
-                <div className="max-w-7xl mx-auto flex flex-wrap justify-between gap-12 text-center md:text-left">
-                    {[
-                        { v: '150+', l: 'Projects Delivered' },
-                        { v: '₹12Cr+', l: 'Ad Spend Managed' },
-                        { v: '45k', l: 'Daily Active Users' },
-                        { v: '12ms', l: 'Avg Response Time' }
-                    ].map((s, i) => (
-                        <div key={i}>
-                            <p className="text-5xl font-black text-white tracking-tighter mb-2">{s.v}</p>
-                            <p className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em]">{s.l}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            <TeamSection />
-
-            {/* Free SEO Audit Banner */}
-            <section className="py-32 px-8">
-                <div className="max-w-7xl mx-auto bg-gradient-to-br from-primary-container to-red-900 rounded-[3rem] p-12 md:p-24 relative overflow-hidden group border border-white/10 shadow-[0_48px_96px_rgba(255,83,91,0.2)]">
-                    <div className="absolute -right-20 -bottom-20 w-[600px] h-[600px] bg-white/10 rounded-full blur-[120px] group-hover:scale-110 transition-transform duration-1000"></div>
-                    <div className="relative z-10 max-w-3xl">
-                        <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-white tracking-tighter mb-10 leading-[0.9]">Your Competitors are Growing. <br/><span className="text-zinc-950/40">Why aren't you?</span></h2>
-                        <p className="text-white/80 text-xl md:text-2xl mb-12 font-medium max-w-xl">Get a detailed technical audit of your website—completely free. No strings, just pure value.</p>
-                        <form className="flex flex-col sm:flex-row gap-4 max-w-xl" onSubmit={(e) => e.preventDefault()}>
-                            <input 
-                                className="flex-1 bg-white/10 border border-white/20 text-white placeholder:text-white/40 rounded-2xl px-8 py-5 focus:ring-2 focus:ring-white outline-none backdrop-blur-md transition-all" 
-                                placeholder="yourwebsite.com" 
-                                type="text"
-                            />
-                            <button className="bg-white text-primary-container font-black px-12 py-5 rounded-2xl hover:bg-zinc-100 transition-all uppercase tracking-widest text-xs">
-                                Analyze Now
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </section>
-
+const BrandMarquee = () => {
+  const items = [
+    "ADAMSALVE", "AI AUTOMATION", "TECHNICAL SEO", 
+    "SCALABLE SYSTEMS", "PERFORMANCE ENGINEERING", "ADAMSALVE", 
+    "AI AUTOMATION", "TECHNICAL SEO", "SCALABLE SYSTEMS"
+  ];
+  
+  return (
+    <div className="bg-black py-12 border-y border-white/5 overflow-hidden">
+      <div className="brand-marquee">
+        <div className="brand-marquee-content">
+          {items.map((item, i) => (
+            <span key={i} className="text-white/20 text-4xl md:text-6xl font-instrument italic tracking-tighter whitespace-nowrap">
+              {item}
+            </span>
+          ))}
         </div>
-    );
+        <div className="brand-marquee-content" aria-hidden="true">
+          {items.map((item, i) => (
+            <span key={i} className="text-white/20 text-4xl md:text-6xl font-instrument italic tracking-tighter whitespace-nowrap">
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- Hero ---
+
+const Hero = () => {
+  const videoRef = useRef(null);
+  const [videoOpacity, setVideoOpacity] = useState(0);
+  const fadeDuration = 500;
+
+  const animateOpacity = (start, end, duration, callback) => {
+    let startTime = null;
+    const animate = (currentTime) => {
+      if (!startTime) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const currentOpacity = start + (end - start) * progress;
+      setVideoOpacity(currentOpacity);
+      if (progress < 1) requestAnimationFrame(animate);
+      else if (callback) callback();
+    };
+    requestAnimationFrame(animate);
+  };
+
+  const handleCanPlay = () => {
+    videoRef.current?.play();
+    animateOpacity(0, 1, fadeDuration);
+  };
+
+  const handleTimeUpdate = () => {
+    if (!videoRef.current) return;
+    const remainingTime = videoRef.current.duration - videoRef.current.currentTime;
+    if (remainingTime <= 0.55 && videoOpacity === 1) {
+      animateOpacity(1, 0, fadeDuration);
+    }
+  };
+
+  const handleEnded = () => {
+    if (!videoRef.current) return;
+    setVideoOpacity(0);
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.play();
+        animateOpacity(0, 1, fadeDuration);
+      }
+    }, 100);
+  };
+
+  return (
+    <section className="relative min-h-screen w-full overflow-hidden flex flex-col bg-black">
+      <video
+        ref={videoRef}
+        onCanPlay={handleCanPlay}
+        onTimeUpdate={handleTimeUpdate}
+        onEnded={handleEnded}
+        muted autoPlay playsInline preload="auto"
+        className="absolute inset-0 w-full h-full object-cover object-bottom z-0"
+        style={{ opacity: videoOpacity }}
+      >
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_074625_a81f018a-956b-43fb-9aee-4d1508e30e6a.mp4" type="video/mp4" />
+      </video>
+
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pt-32 pb-12 text-center -translate-y-[10%]">
+        <motion.h1 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="text-7xl md:text-8xl lg:text-9xl text-white tracking-tight font-instrument mb-12"
+        >
+          Know it then <em className="italic">all</em>.
+        </motion.h1>
+
+        <div className="max-w-xl w-full mb-8">
+          <div className="liquid-glass rounded-full pl-6 pr-2 py-2 flex items-center gap-3">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="bg-transparent flex-1 text-white placeholder:text-white/40 outline-none text-sm"
+            />
+            <button className="bg-white rounded-full p-3 text-black hover:scale-105 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.4)]">
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        <p className="text-white/60 text-sm leading-relaxed max-w-md mb-10 px-4">
+          Stay updated with the latest news and insights from Tag Easy. Subscribe to our newsletter today and never miss out on exciting updates.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4">
+          <button className="liquid-glass rounded-full px-8 py-3 text-white text-sm font-medium hover:bg-white/5 transition-colors flex items-center gap-2 group">
+            <Phone className="w-4 h-4 text-white/50 group-hover:text-white transition-colors" />
+            Get a call
+          </button>
+          <a href="https://adamsalve.com" target="_blank" rel="noopener noreferrer" className="liquid-glass rounded-full px-8 py-3 text-white text-sm font-medium hover:bg-white/5 transition-colors flex items-center gap-2">
+            Try Adamsalve
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+
+      <div className="relative z-10 flex justify-center gap-4 pb-12">
+        {[Instagram, Twitter, Globe].map((Icon, i) => (
+          <button key={i} className="liquid-glass rounded-full p-4 text-white/40 hover:text-white hover:bg-white/10 transition-all">
+            <Icon className="w-5 h-5" />
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+// --- Adamsalve Discovery Mockup ---
+
+const AdamsalveMockup = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <SectionContainer className="bg-black pt-32 md:pt-48 pb-20">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="lg:col-span-5 space-y-8">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="text-white/40 text-xs tracking-[0.3em] uppercase block mb-4">Flagship Platform</span>
+            <h2 className="text-5xl md:text-7xl text-white tracking-tight font-instrument mb-8 leading-[1.1]">
+              The Intelligent <br /><span className="italic text-white/60">Core</span> of Your Business.
+            </h2>
+            <p className="text-white/50 text-lg leading-relaxed mb-12">
+              Adamsalve isn't just an assistant; it's an infrastructure overhaul. Automate complex workflows, gain deep data insights, and scale without friction.
+            </p>
+            <a href="https://adamsalve.com" className="liquid-glass rounded-full px-10 py-4 text-white text-sm font-semibold hover:bg-white/10 transition-all inline-flex items-center gap-3">
+              Launch Adamsalve Discovery
+              <LayoutDashboard className="w-4 h-4" />
+            </a>
+          </motion.div>
+        </div>
+
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 100, scale: 0.95 }}
+          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="lg:col-span-7"
+        >
+          {/* Browser Mockup */}
+          <div className="liquid-glass rounded-2xl overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.8)] border border-white/5 aspect-[16/10] flex flex-col">
+            {/* Browser Top Bar */}
+            <div className="bg-white/5 px-4 py-3 border-b border-white/5 flex items-center gap-4">
+              <div className="flex gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-400/50" />
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/50" />
+                <div className="w-2.5 h-2.5 rounded-full bg-green-400/50" />
+              </div>
+              <div className="bg-white/5 rounded-md flex-1 text-[10px] text-white/20 py-1 px-4 font-mono truncate">
+                adamsalve.com/dashboard/analytics
+              </div>
+            </div>
+            
+            {/* Dashboard Content Mockup */}
+            <div className="flex-1 flex overflow-hidden">
+              <div className="w-16 md:w-24 bg-white/[0.02] border-r border-white/5 pt-6 flex flex-col items-center gap-6">
+                {[LayoutDashboard, BarChart3, Clock, Zap, ShieldCheck].map((Icon, i) => (
+                  <Icon key={i} className={cn("w-5 h-5", i === 0 ? "text-white" : "text-white/20")} />
+                ))}
+              </div>
+              <div className="flex-1 p-6 space-y-6 overflow-hidden">
+                <div className="flex justify-between items-center mb-8">
+                  <div className="w-32 h-6 bg-white/10 rounded-md animate-pulse" />
+                  <div className="w-16 h-8 bg-white/5 rounded-full" />
+                </div>
+                <div className="grid grid-cols-3 gap-4">
+                  {[1, 2, 3].map(i => (
+                    <div key={i} className="bg-white/[0.03] rounded-xl p-4 h-24 flex flex-col justify-between border border-white/5">
+                      <div className="w-8 h-2 bg-white/10 rounded" />
+                      <div className="w-16 h-4 bg-white/20 rounded" />
+                    </div>
+                  ))}
+                </div>
+                <div className="bg-white/[0.03] rounded-2xl p-6 flex-1 h-32 relative border border-white/5">
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={isInView ? { width: "100%" } : {}}
+                    transition={{ duration: 2, delay: 1 }}
+                    className="absolute bottom-12 left-6 right-6 h-1 w-full bg-gradient-to-r from-white/0 via-white/20 to-white/0"
+                  />
+                  <div className="w-48 h-4 bg-white/10 rounded mb-4" />
+                  <div className="space-y-2">
+                    <div className="w-full h-2 bg-white/5 rounded" />
+                    <div className="w-3/4 h-2 bg-white/5 rounded" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </SectionContainer>
+  );
+};
+
+// --- Progressive Stats Bento ---
+
+const StatsBento = () => {
+  const stats = [
+    { label: "Efficiency Boost", val: "85%", desc: "Automated business workflows.", size: "lg", icon: Zap },
+    { label: "Cost Reduction", val: "40%", desc: "Lowered operational overhead.", size: "sm", icon: ShieldCheck },
+    { label: "Daily Active Users", val: "45k", desc: "Scaling across global platforms.", size: "sm", icon: Globe },
+    { label: "Engineering Heritage", val: "10Y+", desc: "A decade of performance focus.", size: "md", icon: Clock },
+  ];
+
+  return (
+    <SectionContainer className="pt-0 pb-32">
+      <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-auto md:h-[600px]">
+        {stats.map((s, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.1 }}
+            viewport={{ once: true }}
+            className={cn(
+              "group relative",
+              s.size === "lg" ? "md:col-span-2 md:row-span-2" : "",
+              s.size === "md" ? "md:col-span-2 md:row-span-1" : "md:col-span-1 md:row-span-1"
+            )}
+          >
+            <GlassCard className="flex flex-col justify-between overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                <s.icon className="w-12 h-12 text-white/5" />
+              </div>
+              <div>
+                <span className="text-white/40 text-[10px] tracking-[0.3em] uppercase block mb-4">{s.label}</span>
+                <p className={cn("text-white tracking-tighter font-instrument mb-4", s.size === "lg" ? "text-8xl" : "text-5xl")}>
+                  {s.val}
+                </p>
+              </div>
+              <p className="text-white/60 text-sm leading-relaxed max-w-[200px]">
+                {s.desc}
+              </p>
+            </GlassCard>
+          </motion.div>
+        ))}
+      </div>
+    </SectionContainer>
+  );
+};
+
+// --- About ---
+
+const AboutSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section ref={ref} id="about" className="bg-black pt-32 md:pt-44 pb-10 md:pb-14 px-6 overflow-hidden relative">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.03)_0%,_transparent_70%)] pointer-events-none" />
+      <div className="max-w-6xl mx-auto">
+        <motion.span
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-white/40 text-sm tracking-widest uppercase block mb-8"
+        >
+          About Us
+        </motion.span>
+        
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="text-4xl md:text-6xl lg:text-7xl text-white leading-[1.1] tracking-tight font-instrument"
+        >
+          <span className="text-white/60 italic">Pioneering then ideas</span> for<br className="hidden md:block" />
+          <span className="text-white/60 italic">minds that then create, build, and inspire.</span>
+        </motion.h2>
+
+        <div className="mt-16 max-w-2xl">
+          <p className="text-white/50 text-lg leading-relaxed">
+            Tag Easy is the architectural foundation for the brands of tomorrow. We specialize in building scalable digital systems where performance, SEO, and growth are baked into the core.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- Bento Services ---
+
+const BentoServices = () => {
+  const services = [
+    { tag: "Strategy", title: "Technical SEO & Scale", icon: Monitor, desc: "We dig deep into data, culture, and human behavior to surface the insights that drive organic dominance.", video: "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4" },
+    { tag: "Craft", title: "Web Engineering", icon: Cpu, desc: "From concept to launch, we obsess over every line of code to deliver experiences that feel effortless.", video: "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260324_151826_c7218672-6e92-402c-9e45-f1e0f454bdc4.mp4" },
+    { tag: "Intelligence", title: "AI Integration", icon: BarChart3, desc: "Automate your logic with modular AI systems built for real-world business impact.", video: "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4" }
+  ];
+
+  return (
+    <SectionContainer id="services" className="pb-40">
+      <div className="flex justify-between items-end mb-16 md:mb-24">
+        <h2 className="text-3xl md:text-5xl text-white tracking-tight">Technical Prowess</h2>
+        <span className="text-white/40 text-sm hidden md:block">The Tag Easy Stack</span>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {services.map((s, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: i * 0.1 }}
+            viewport={{ once: true }}
+          >
+            <GlassCard className="group overflow-hidden !p-0">
+              <div className="aspect-[16/10] relative overflow-hidden">
+                <video autoPlay loop muted playsInline preload="auto" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100">
+                  <source src={s.video} type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none" />
+              </div>
+              <div className="p-8">
+                <div className="flex justify-between items-center mb-6">
+                  <span className="text-[10px] tracking-[0.3em] uppercase text-white/30">{s.tag}</span>
+                  <s.icon className="w-5 h-5 text-white/20 group-hover:text-white transition-colors" />
+                </div>
+                <h3 className="text-2xl text-white font-instrument mb-4 tracking-tight group-hover:italic transition-all">{s.title}</h3>
+                <p className="text-white/40 text-sm leading-relaxed">{s.desc}</p>
+              </div>
+            </GlassCard>
+          </motion.div>
+        ))}
+      </div>
+    </SectionContainer>
+  );
+};
+
+// --- Final Interactive CTA ---
+
+const InteractiveCTA = () => {
+  return (
+    <SectionContainer className="pb-32">
+      <div className="liquid-glass rounded-[4rem] p-12 md:p-24 text-center relative group overflow-hidden border border-white/10">
+        {/* Animated Glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.1)_0%,_transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
+        
+        <div className="relative z-10 max-w-3xl mx-auto">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-5xl md:text-8xl text-white tracking-tight font-instrument mb-10 leading-none"
+          >
+            Next wave <br /><span className="italic text-white/40">engineered.</span>
+          </motion.h2>
+          <p className="text-white/60 text-lg md:text-xl mb-12 max-w-xl mx-auto leading-relaxed">
+            Whether you need a scalable digital ecosystem or our flagship Adamsalve assistant, we are ready to build the future of your brand.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <button className="bg-white text-black rounded-full px-12 py-5 text-sm font-black uppercase tracking-widest hover:scale-105 transition-all shadow-[0_0_40px_rgba(255,255,255,0.3)]">
+              Analyze My Brand
+            </button>
+            <a href="https://adamsalve.com" className="liquid-glass rounded-full px-12 py-5 text-white text-sm font-black uppercase tracking-widest hover:bg-white/10 transition-all">
+              Try Adamsalve
+            </a>
+          </div>
+        </div>
+      </div>
+    </SectionContainer>
+  );
+};
+
+// --- Main Home Page ---
+
+const Home = () => {
+  return (
+    <main className="bg-black relative">
+      <div className="absolute inset-0 bg-noise opacity-20 pointer-events-none z-50 mix-blend-overlay" />
+      <Hero />
+      <BrandMarquee />
+      <AboutSection />
+      <AdamsalveMockup />
+      <StatsBento />
+      <BentoServices />
+      <TeamSection />
+      <InteractiveCTA />
+    </main>
+  );
 };
 
 export default Home;

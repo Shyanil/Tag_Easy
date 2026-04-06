@@ -16,7 +16,7 @@ const Heritage = () => {
         <motion.h1 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="text-5xl md:text-7xl font-black text-white italic font-display relative z-10"
+          className="text-5xl md:text-7xl font-bold text-white italic font-display relative z-10"
         >
           City of Joy.
         </motion.h1>
@@ -24,7 +24,7 @@ const Heritage = () => {
 
       <section className="max-w-7xl mx-auto px-8 py-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div>
-            <h2 className="text-4xl md:text-5xl font-black mb-10 font-headline leading-tight text-white">Software as <br /><span className="text-primary italic font-display">Artistry.</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-10 font-headline leading-tight text-white">Software as <br /><span className="text-primary italic font-display">Artistry.</span></h2>
             <p className="text-lg text-zinc-500 font-medium leading-relaxed">Performance isn't just a metric; it's our source code. We draw inspiration from global engineering standards to create websites that are both timeless and high-performing.</p>
         </div>
         <div className="bg-zinc-950 p-12 rounded-[2rem] border border-white/5 flex flex-col items-center justify-center text-center">

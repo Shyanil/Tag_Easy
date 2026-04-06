@@ -18,7 +18,7 @@ const Contact = () => {
             }}
         >
             <motion.span variants={itemVariants} className="font-label text-primary tracking-[0.4em] text-[9px] uppercase font-bold block mb-6">Building Scalable Systems</motion.span>
-            <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white leading-[1.1] mb-10 tracking-tight">Ready to <br /><span className="text-primary italic font-display">Manifest?</span></motion.h1>
+            <motion.h1 variants={itemVariants} className="text-4xl md:text-6xl font-bold text-white leading-[1.1] mb-10 tracking-tight">Ready to <br /><span className="italic-highlight">Manifest?</span></motion.h1>
             <motion.p variants={itemVariants} className="text-lg text-zinc-500 font-medium leading-relaxed mb-12 max-w-md">Set the foundation for your project's digital scale with premier engineering.</motion.p>
             
             <div className="space-y-10">
@@ -27,7 +27,7 @@ const Contact = () => {
                         <span className="material-symbols-outlined text-xl text-zinc-500 group-hover:text-primary">mail</span>
                     </div>
                     <div>
-                        <div className="text-[8px] text-zinc-600 uppercase font-black tracking-widest mb-1">Email</div>
+                        <div className="text-[8px] text-zinc-600 uppercase font-bold tracking-widest mb-1">Email</div>
                         <div className="text-white font-medium">hello@tageasy.in</div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@ const Contact = () => {
                         <span className="material-symbols-outlined text-xl text-zinc-500 group-hover:text-primary">call</span>
                     </div>
                     <div>
-                        <div className="text-[8px] text-zinc-600 uppercase font-black tracking-widest mb-1">Phone</div>
+                        <div className="text-[8px] text-zinc-600 uppercase font-bold tracking-widest mb-1">Phone</div>
                         <div className="text-white font-medium">+91 033 400X XXXX</div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ const Contact = () => {
                     <textarea className="w-full bg-transparent border-b border-white/10 py-4 text-white outline-none focus:border-primary transition-all font-medium placeholder:text-zinc-700 h-32 resize-none" placeholder="Tell us about your structural needs..."></textarea>
                     <div className="absolute bottom-0 left-0 h-[1px] w-0 bg-primary group-focus-within:w-full transition-all duration-500"></div>
                 </div>
-                <button className="w-full bg-white text-black py-4 rounded-full font-bold uppercase tracking-widest text-[10px] hover:bg-zinc-200 transition-all shadow-xl">
+                <button className="btn-primary w-full !rounded-full py-4 text-[10px]">
                     Submit Brief
                 </button>
             </form>

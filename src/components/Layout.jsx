@@ -1,16 +1,19 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Layout = () => {
+  const location = useLocation();
+
   return (
-    <div className="min-h-screen bg-background text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container flex flex-col">
+    <div className="min-h-screen bg-black text-white font-body selection:bg-white selection:text-black flex flex-col antialiased">
       <Navbar />
       <main className="flex-grow">
         <AnimatePresence mode="wait">
           <motion.div
+            key={location.pathname}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}

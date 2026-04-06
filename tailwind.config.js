@@ -57,9 +57,9 @@ export default {
         "on-secondary-fixed-variant": "#494645"
       },
       fontFamily: {
-        "headline": ["Inter", "sans-serif"],
-        "body": ["Inter", "sans-serif"],
-        "label": ["Space Grotesk", "sans-serif"]
+        "instrument": ["'Instrument Serif'", "serif"],
+        "body": ["Poppins", "sans-serif"],
+        "display": ["Poppins", "sans-serif"]
       },
       borderRadius: {
         "DEFAULT": "0.25rem",

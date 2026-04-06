@@ -18,15 +18,15 @@ const About = () => {
           animate={{ opacity: 1, y: 0 }}
           className="relative z-10 text-center px-6"
         >
-          <span className="font-label text-primary tracking-[0.4em] uppercase text-[10px] mb-6 block font-black">Our Philosophy</span>
-          <h1 className="font-display text-5xl md:text-7xl font-black text-white italic">Beyond Code.</h1>
+          <span className="font-label text-primary tracking-[0.4em] uppercase text-[10px] mb-6 block font-semibold">Our Philosophy</span>
+          <h1 className="font-display text-5xl md:text-7xl font-bold text-white italic">Beyond <span className="italic-highlight">Code.</span></h1>
         </motion.div>
       </section>
 
       <section className="max-w-7xl mx-auto px-8 py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-7">
-            <h2 className="text-3xl md:text-5xl font-black mb-10 font-headline leading-tight text-white">The Engineering of <br /><span className="text-primary italic font-display">Resilience.</span></h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-10 font-headline leading-tight text-white">The Engineering of <br /><span className="italic-highlight">Resilience.</span></h2>
             <div className="space-y-8 text-lg text-zinc-400 leading-relaxed font-medium">
               <p>Tag Easy was forged in the heat of ambitious engineering challenges. We believe that software isn't just a utility—it's infrastructure that should last.</p>
               <p>Like the Victoria Memorial stands as a testament to craftsmanship, our digital products stand as benchmarks of performance and aesthetic excellence.</p>
@@ -34,20 +34,20 @@ const About = () => {
 
             <div className="grid grid-cols-2 gap-8 mt-12 text-center">
               <div className="p-8 rounded-2xl bg-zinc-950 border border-white/5">
-                <div className="text-3xl font-black text-primary mb-1 font-display">10+</div>
-                <div className="text-[10px] font-label text-zinc-600 uppercase tracking-widest font-black">Years</div>
+                <div className="text-3xl font-bold text-primary mb-1 font-display">10+</div>
+                <div className="text-[10px] font-label text-zinc-600 uppercase tracking-widest font-semibold">Years</div>
               </div>
               <div className="p-8 rounded-2xl bg-zinc-950 border border-white/5">
-                <div className="text-3xl font-black text-primary mb-1 font-display">50+</div>
-                <div className="text-[10px] font-label text-zinc-600 uppercase tracking-widest font-black">Architects</div>
+                <div className="text-3xl font-bold text-primary mb-1 font-display">50+</div>
+                <div className="text-[10px] font-label text-zinc-600 uppercase tracking-widest font-semibold">Architects</div>
               </div>
             </div>
           </div>
 
           <div className="lg:col-span-5 space-y-8">
             <div className="bg-primary p-10 rounded-[2rem] text-background">
-              <p className="text-2xl font-display italic font-black leading-tight mb-6">"We don't just build for today. We build for longevity and scale."</p>
-              <p className="font-label text-[10px] uppercase tracking-widest font-black opacity-60">— Lokesh Choudhury, Founder</p>
+              <p className="text-2xl font-display italic font-bold leading-tight mb-6">"We don't just build for today. We build for longevity and scale."</p>
+              <p className="font-label text-[10px] uppercase tracking-widest font-semibold opacity-60">— Lokesh Choudhury, Founder</p>
             </div>
           </div>
         </div>

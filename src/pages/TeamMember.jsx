@@ -38,7 +38,7 @@ const TeamMember = () => {
       <div className="max-w-7xl mx-auto">
         <Link 
           to="/" 
-          className="inline-flex items-center gap-2 text-zinc-500 hover:text-primary transition-colors mb-12 group uppercase text-[10px] font-black tracking-widest"
+          className="inline-flex items-center gap-2 text-zinc-500 hover:text-primary transition-colors mb-12 group uppercase text-[10px] font-bold tracking-widest"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
           Back to Home
@@ -67,10 +67,10 @@ const TeamMember = () => {
             animate={{ opacity: 1, x: 0 }}
             className="lg:col-span-7 flex flex-col justify-center h-full pt-10"
           >
-            <div className="inline-block mb-6 px-5 py-2 rounded-full border border-white/10 bg-white/5 text-primary text-[10px] font-black uppercase tracking-[0.4em]">
+            <div className="inline-block mb-6 px-5 py-2 rounded-full border border-white/10 bg-white/5 text-primary text-[10px] font-bold uppercase tracking-[0.4em]">
               The Team
             </div>
-            <h1 className="text-5xl md:text-8xl font-black text-white tracking-tighter mb-4 leading-none uppercase">
+            <h1 className="text-5xl md:text-8xl font-bold text-white tracking-tighter mb-4 leading-none uppercase">
               {member.name}
             </h1>
             <p className="text-xl font-display italic text-primary-container mb-12 tracking-wide">
@@ -85,7 +85,7 @@ const TeamMember = () => {
 
             {member.experience && (
               <div className="mb-12 max-w-xl">
-                <h3 className="text-xl font-black text-white mb-6 uppercase tracking-widest text-[14px]">Experience</h3>
+                <h3 className="text-xl font-bold text-white mb-6 uppercase tracking-widest text-[14px]">Experience</h3>
                 <ul className="space-y-6">
                   {member.experience.map((exp, idx) => (
                     <li key={idx} className="text-zinc-400 font-label border-l-2 border-white/10 pl-4 py-1">
@@ -103,7 +103,7 @@ const TeamMember = () => {
 
             {member.education && (
               <div className="mb-16 max-w-xl">
-                <h3 className="text-xl font-black text-white mb-6 uppercase tracking-widest text-[14px]">Education</h3>
+                <h3 className="text-xl font-bold text-white mb-6 uppercase tracking-widest text-[14px]">Education</h3>
                 <ul className="space-y-6">
                   {member.education.map((edu, idx) => (
                     <li key={idx} className="text-zinc-400 font-label border-l-2 border-white/10 pl-4 py-1">
