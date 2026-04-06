@@ -1,24 +1,28 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { cn } from '../lib/utils';
+import { cn, getCalendlyUrl } from '../lib/utils';
+import logoT from '../assets/Logo_T.png';
 
 export default function Navbar() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-3 md:py-4 w-full pointer-events-none">
-      <div className="liquid-glass bg-black/20 rounded-full max-w-5xl mx-auto px-4 md:px-6 py-1.5 md:py-2 flex items-center justify-between pointer-events-auto shadow-2xl">
+    <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-3 md:py-5 w-full pointer-events-none">
+      <div className={cn(
+        "liquid-glass bg-black/40 rounded-full max-w-5xl mx-auto px-5 md:px-8 py-2 md:py-2.5 flex items-center justify-between pointer-events-auto",
+        "transition-all duration-700 border border-white/5 hover:border-red-500/50 hover:neon-red-glow hover:scale-[1.01]"
+      )}>
         <div className="flex items-center gap-2">
-          <NavLink to="/" className="flex items-center">
+          <NavLink to="/" className="flex items-center hover:scale-105 transition-transform">
             <img 
-              src="/logo-removebg-preview.png" 
+              src={logoT} 
               alt="Tag Easy Logo" 
               style={{
-                width: 'clamp(70px, 12vw, 110px)',
+                width: 'clamp(50px, 8vw, 75px)',
                 height: 'auto',
                 objectFit: 'contain'
               }}
             />
           </NavLink>
-          <div className="hidden md:flex items-center gap-4 md:gap-5 ml-4 md:ml-8">
+          <div className="hidden lg:flex items-center gap-6 ml-8">
             {[
               { name: 'Case Studies', href: '/case-studies' },
               { name: 'Industries', href: '/industries' },
@@ -29,8 +33,8 @@ export default function Navbar() {
                 key={item.name}
                 to={item.href}
                 className={({ isActive }) => cn(
-                  "text-sm font-medium transition-colors",
-                  isActive ? "text-white" : "text-white/60 hover:text-white"
+                  "text-[11px] uppercase tracking-[0.2em] font-semibold transition-all duration-300",
+                  isActive ? "text-white" : "text-white/40 hover:text-white hover:tracking-[0.25em]"
                 )}
               >
                 {item.name}
@@ -38,13 +42,18 @@ export default function Navbar() {
             ))}
           </div>
         </div>
-        <div className="flex items-center gap-3 md:gap-6">
-          <button className="text-white text-sm font-medium hover:text-white/80 transition-colors">Get a call</button>
+        <div className="flex items-center gap-4 md:gap-8">
+          <button 
+            onClick={() => window.open(getCalendlyUrl(), '_blank')}
+            className="text-white/50 text-[10px] uppercase tracking-widest font-medium hover:text-white transition-colors"
+          >
+            Get a call
+          </button>
           <a
             href="https://adamsalve.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="liquid-glass bg-black/20 rounded-full px-4 md:px-6 py-1.5 md:py-2 text-white text-[10px] md:text-sm font-medium hover:bg-white/10 transition-colors shadow-lg"
+            className="bg-white text-black rounded-full px-5 py-2 text-[10px] uppercase tracking-tighter font-bold hover:scale-105 hover:neon-white-glow transition-all active:scale-95 shadow-xl"
           >
             Try Adamsalve
           </a>

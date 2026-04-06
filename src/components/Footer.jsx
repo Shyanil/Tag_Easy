@@ -1,42 +1,49 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Twitter, Linkedin, Instagram } from 'lucide-react';
-import logo from '../assets/Logo.png';
+import { Github, Linkedin, Instagram, ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { getCalendlyUrl } from '../lib/utils';
+import logo from '../assets/Logo_T.png';
 
 export default function Footer() {
-  const footerLinks = {
-    Company: ['About', 'Careers', 'Blog', 'Press'],
-    Services: ['Web Development', 'Mobile Apps', 'AI Integration', 'Cloud Solutions'],
-    Resources: ['Documentation', 'Case Studies', 'Support', 'Contact'],
-    Legal: ['Privacy Policy', 'Terms of Service', 'Cookie Policy', 'Disclaimer'],
-  };
+  const platformLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'Services', href: '/services' },
+    { name: 'About', href: '/about' },
+    { name: 'Case Studies', href: '/case-studies' },
+    { name: 'Contact', href: '/contact' }
+  ];
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/tag-easy/posts/?feedView=all', label: 'LinkedIn' },
+    { icon: Instagram, href: 'https://www.instagram.com/lokesh_choudhury_92/', label: 'Instagram' },
   ];
 
   return (
-    <footer className="relative py-24 px-8 border-t border-white/10 bg-black">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 mb-20">
+    <footer className="relative py-24 px-8 border-t border-white/5 bg-black overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-red-500/5 blur-[120px] rounded-full pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-20 mb-24">
           {/* Brand Column */}
-          <div className="col-span-2">
+          <div className="md:col-span-12 lg:col-span-5">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="mb-8">
+              <Link to="/" className="mb-10 inline-block">
                 <img
                   src={logo}
                   alt="TAG EASY"
-                  className="h-12 w-auto object-contain"
+                  className="h-10 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity"
                 />
-              </div>
-              <p className="text-zinc-500 text-lg mb-8 max-w-sm leading-relaxed">
-                Architecting the future of creative technology. High-performance engineering for the most ambitious global brands.
-              </p>
+              </Link>
+              <h2 className="text-4xl md:text-5xl text-white font-instrument mb-8 tracking-tighter leading-tight">
+                Architecting the future of <br />
+                <span className="text-white/20">creative technology</span>
+              </h2>
               <div className="flex gap-4">
                 {socialLinks.map((social, index) => {
                   const Icon = social.icon;
@@ -45,9 +52,9 @@ export default function Footer() {
                       key={index}
                       href={social.href}
                       aria-label={social.label}
-                      className="p-4 bg-white/5 rounded-xl border border-white/5 hover:bg-white/10 hover:border-white/20 transition-all group"
+                      className="p-4 bg-white/[0.03] rounded-2xl border border-white/5 hover:bg-white/10 hover:border-red-500/30 transition-all duration-500 group"
                     >
-                      <Icon className="w-5 h-5 text-zinc-400 group-hover:text-primary transition-colors" />
+                      <Icon className="w-5 h-5 text-zinc-500 group-hover:text-red-500 transition-colors" />
                     </a>
                   );
                 })}
@@ -55,30 +62,52 @@ export default function Footer() {
             </motion.div>
           </div>
 
-          {/* Link Columns */}
-          {Object.entries(footerLinks).map(([category, links], i) => (
-            <motion.div
-              key={category}
+          {/* Navigation Columns */}
+          <div className="md:col-span-6 lg:col-span-3">
+             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: 0.1 }}
             >
-              <h3 className="text-white font-bold mb-6 uppercase tracking-widest text-xs">{category}</h3>
+              <h3 className="text-white font-instrument text-2xl mb-8 tracking-tighter">Platform</h3>
               <ul className="space-y-4">
-                {links.map((link, j) => (
-                  <li key={j}>
-                    <a
-                      href="#"
-                      className="text-zinc-500 hover:text-primary transition-colors text-sm font-medium"
+                {platformLinks.map((link) => (
+                  <li key={link.name}>
+                    <Link
+                      to={link.href}
+                      className="text-zinc-500 hover:text-white transition-all duration-500 text-lg font-light flex items-center group"
                     >
-                      {link}
-                    </a>
+                      {link.name}
+                      <ArrowUpRight className="w-3 h-3 ml-2 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-500" />
+                    </Link>
                   </li>
                 ))}
               </ul>
             </motion.div>
-          ))}
+          </div>
+
+          {/* Contact Summary */}
+          <div className="md:col-span-6 lg:col-span-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="liquid-glass p-10 rounded-[2.5rem] border border-white/5 relative group hover:border-red-500/20 transition-all duration-1000"
+            >
+              <h3 className="text-white font-instrument text-2xl mb-6 tracking-tighter">Direct Connect</h3>
+              <p className="text-zinc-500 text-lg font-light mb-8 leading-relaxed group-hover:text-zinc-300 transition-colors">
+                Ready to build something that redefines your market?
+              </p>
+              <button 
+                onClick={() => window.open(getCalendlyUrl(), '_blank')}
+                className="text-red-500 text-[10px] font-bold uppercase tracking-[0.3em] flex items-center hover:tracking-[0.4em] transition-all"
+              >
+                INITIATE PROJECT <ArrowUpRight className="w-3 h-3 ml-2" />
+              </button>
+            </motion.div>
+          </div>
         </div>
 
         {/* Bottom Section */}
@@ -86,16 +115,14 @@ export default function Footer() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="pt-12 border-t border-white/5"
+          className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8"
         >
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-zinc-600 text-xs font-label">
-              © 2026 TAG EASY | Thynk Unlimited. Built for performance.
-            </p>
-            <div className="flex gap-8 text-xs font-label text-zinc-600">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Service Terms</a>
-            </div>
+          <p className="text-zinc-600 text-[10px] font-medium uppercase tracking-widest">
+            © 2026 TAG EASY | ARCHITECTED BY ADAMSALVE
+          </p>
+          <div className="flex gap-10 text-[10px] font-bold uppercase tracking-widest text-zinc-600">
+            <a href="#" className="hover:text-white transition-colors">Infrastructure</a>
+            <a href="#" className="hover:text-white transition-colors">Governance</a>
           </div>
         </motion.div>
       </div>

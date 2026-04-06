@@ -21,7 +21,7 @@ const TeamSection = () => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-white/40 max-w-xl mx-auto font-medium text-lg leading-relaxed"
+            className="text-white/40 max-w-xl mx-auto font-light text-lg leading-relaxed hover:text-white/80 transition-colors duration-500"
           >
             The people behind our technology, strategy, and execution.
           </motion.p>
@@ -35,7 +35,7 @@ const TeamSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="liquid-glass rounded-3xl overflow-hidden group flex flex-col h-full"
+              className="liquid-glass rounded-3xl overflow-hidden group flex flex-col h-full border border-white/5 hover:border-red-500/50 hover:bg-black/60 hover:backdrop-blur-2xl transition-all duration-700"
             >
               <Link to={`/team/${member.slug}`} className="block flex-1 flex flex-col">
                 <div className="aspect-[3/4] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
@@ -51,7 +51,7 @@ const TeamSection = () => {
                   <h3 className="text-xl font-instrument text-white mb-1 group-hover:italic transition-all">
                     {member.name}
                   </h3>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-bold">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-semibold group-hover:text-red-500 transition-colors">
                     {member.role}
                   </p>
                 </div>

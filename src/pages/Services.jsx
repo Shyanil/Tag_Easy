@@ -1,92 +1,110 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { cn, getCalendlyUrl } from '../lib/utils';
+import { 
+  Monitor, Cpu, BarChart3, Rocket, 
+  Smartphone, Brain, Zap, ArrowUpRight 
+} from 'lucide-react';
+import Button from '../components/Button';
+
+import PricingCalculator from '../components/PricingCalculator';
+
+const SectionContainer = ({ children, className, id }) => (
+  <section id={id} className={cn("bg-black relative overflow-hidden px-4 md:px-6 py-20 md:py-40", className)}>
+    <div className="max-w-7xl mx-auto">
+      {children}
+    </div>
+  </section>
+);
+
+const GlassCard = ({ children, className }) => (
+  <div className={cn("liquid-glass rounded-[2rem] md:rounded-[3rem] p-8 md:p-12 h-full aura-card border border-white/5 hover:border-red-500/50 hover:bg-black/60 hover:backdrop-blur-2xl transition-all duration-700", className)}>
+    {children}
+  </div>
+);
+
+const VideoRenderer = ({ service, index }) => {
+  const commonClasses = cn(
+    "w-full h-full object-cover transition-all duration-700 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110"
+  );
+
+  return (
+    <video autoPlay loop muted playsInline preload="metadata" className={commonClasses}>
+      <source src={service.video} type="video/mp4" />
+    </video>
+  );
+};
 
 const Services = () => {
   const services = [
     {
-      title: 'Website Development',
-      desc: 'Custom, scalable, and high-performance websites',
-      icon: 'language',
-      tags: ['Next.js & React', 'Headless E-commerce']
+      title: 'Ads Hub',
+      desc: 'Intelligent advertising engines built for scaling brand awareness and conversion dominance.',
+      icon: Zap,
+      tags: ['Google Ads', 'Meta Ads'],
+      video: 'https://www.pexels.com/download/video/8072444/'
     },
     {
-      title: 'SEO',
-      desc: 'Organic growth with technical and content-driven SEO',
-      icon: 'rocket_launch',
-      tags: ['Technical Audits', 'Content Strategy']
+      title: 'Web Site Development',
+      desc: 'Intelligent digital ecosystems built to architect scale and engineered for high-performance dominance.',
+      icon: Monitor,
+      tags: ['Next.js & React', 'UX/UI Innovation'],
+      video: 'https://www.pexels.com/download/video/2887463/'
     },
     {
-      title: 'PPC Advertising',
-      desc: 'Performance marketing with measurable ROI',
-      icon: 'ads_click',
-      tags: ['Google Ads', 'Meta Ads']
-    },
-    {
-      title: 'Mobile App Development',
-      desc: 'Scalable Android and iOS applications',
-      icon: 'app_settings_alt',
-      tags: ['iOS & Android', 'UX/UI Innovation']
-    },
-    {
-      title: 'AI & Machine Learning',
-      desc: 'Intelligent systems built for automation and insights',
-      icon: 'psychology',
-      tags: ['Automation', 'Data Insights']
-    },
-    {
-      title: 'Custom AI Training',
-      desc: 'Tailored AI models based on business use-cases',
-      icon: 'model_training',
-      tags: ['Model Fine-tuning', 'Niche AI']
+      title: 'AI Automation',
+      desc: 'Intelligent systems built to automate logic and scale business intelligence.',
+      icon: Brain,
+      tags: ['Automation', 'Data Insights'],
+      video: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4'
     }
   ];
 
   return (
-    <main className="pb-32 px-6 pt-24">
-      <header className="mb-24 mt-12 text-center md:text-left max-w-7xl mx-auto px-6">
+    <main className="bg-black pt-20">
+      <div className="absolute inset-0 bg-noise opacity-10 pointer-events-none z-50 mix-blend-overlay" />
+      
+      <header className="pt-24 md:pt-40 pb-20 px-6 max-w-7xl mx-auto">
         <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          className="inline-block mb-6 border-b-2 border-primary pb-1"
-        >
-          <span className="font-label text-xs uppercase tracking-[0.4em] text-primary font-bold">Our Expertise</span>
-        </motion.div>
-        <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight mb-8 font-headline text-white"
+          viewport={{ once: true }}
+          className="max-w-4xl"
         >
-          Building Scalable <span className="italic-highlight text-4xl md:text-6xl">Digital</span><br />Systems.
-        </motion.h1>
+          <span className="text-red-500 text-[10px] font-semibold tracking-[0.4em] uppercase block mb-8">Engineering Excellence</span>
+          <h1 className="text-5xl md:text-8xl text-white tracking-tighter font-instrument leading-[0.8] mb-12">
+            Building systems <br />
+            <span className="text-white/20">that redefine scale</span>
+          </h1>
+          <p className="text-white/40 text-2xl max-w-2xl font-light leading-relaxed hover:text-white/80 transition-colors duration-500">
+            Our stack is more than code; it's the architectural foundation for the brands of tomorrow.
+          </p>
+        </motion.div>
       </header>
 
-      <section className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 mb-40">
-        {services.map((service, i) => (
-          <motion.div 
-            key={service.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className="p-10 rounded-3xl bg-zinc-950 border border-white/5 hover:border-primary/20 transition-all group"
-          >
-            <span className="material-symbols-outlined text-primary text-4xl mb-6 block">{service.icon}</span>
-            <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-primary transition-colors">{service.title}</h3>
-            <p className="text-zinc-500 font-medium mb-8 leading-relaxed">{service.desc}</p>
-            <div className="flex gap-4">
-                {service.tags.map(tag => (
-                    <span key={tag} className="text-[9px] font-bold uppercase tracking-widest text-zinc-600 bg-zinc-900 px-3 py-1 rounded-full border border-white/5">{tag}</span>
-                ))}
-            </div>
-          </motion.div>
-        ))}
-      </section>
 
-      <section className="py-24 bg-surface rounded-[3rem] mx-6 border border-white/5 text-center px-8 relative overflow-hidden">
-            <h2 className="text-3xl md:text-5xl font-bold font-display italic text-white mb-8">Ready to architect your <span className="italic-highlight">scale?</span></h2>
-            <button className="btn-primary">
-                Construct your plan
-            </button>
-      </section>
+      <SectionContainer className="pt-0">
+        <PricingCalculator />
+      </SectionContainer>
+
+      <SectionContainer className="pt-0 pb-40">
+        <div className="liquid-glass rounded-[3rem] md:rounded-[5rem] p-12 md:p-32 text-center relative group overflow-hidden border border-white/5 hover:border-red-500/30 transition-all duration-1000">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(239,68,68,0.1)_0%,_transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
+          
+          <div className="relative z-10 max-w-4xl mx-auto">
+            <h2 className="text-5xl md:text-[7rem] text-white tracking-tighter font-instrument italic mb-12 leading-none">
+              Ready to <span className="text-white/20 not-italic">architect your scale?</span>
+            </h2>
+            <Button 
+              variant="primary" 
+              className="px-16 py-6 text-xs tracking-[0.2em]"
+              onClick={() => window.open(getCalendlyUrl(), '_blank')}
+            >
+              CONSTRUCT YOUR PLAN
+            </Button>
+          </div>
+        </div>
+      </SectionContainer>
     </main>
   );
 };

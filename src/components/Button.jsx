@@ -9,15 +9,14 @@ const Button = ({
   onClick,
   ...props 
 }) => {
-  const baseStyles = "px-7 py-3 rounded-full font-medium text-sm transition-all duration-300 whitespace-nowrap inline-flex items-center justify-center";
+  const baseStyles = "px-8 py-3.5 rounded-full font-semibold text-sm transition-all duration-500 whitespace-nowrap inline-flex items-center justify-center gap-2 group active:scale-95";
   
   const variants = {
-    primary: "bg-[#051A24] text-white hover:bg-[#0D212C] shadow-[0_4px_14px_0_rgba(5,26,36,0.39)] hover:shadow-[0_6px_20px_rgba(5,26,36,0.23)]",
-    secondary: "bg-white text-[#051A24] border border-[#051A24]/10 shadow-[0_4px_14px_0_rgba(0,0,0,0.1)] hover:bg-zinc-50",
-    tertiary: "bg-white text-[#051A24] shadow-[inset_0_0_0_1px_rgba(5,26,36,0.1)] hover:bg-zinc-50"
+    primary: "bg-white text-black hover:bg-white/90 hover:scale-[1.03] hover:neon-white-glow shadow-xl",
+    secondary: "liquid-glass text-white border border-white/10 hover:border-red-500/50 hover:neon-red-glow hover:scale-[1.03]",
+    tertiary: "text-white/60 hover:text-white transition-opacity font-semibold"
   };
 
-  const Component = href ? 'a' : 'button';
   const commonProps = {
     className: cn(baseStyles, variants[variant], className),
     onClick,
