@@ -4,7 +4,7 @@ export const teamMembers = [
     name: 'Lokesh Choudhury',
     role: 'Founder & Director',
     bio: 'Lokesh leads the vision and strategic direction of Tag Easy, bringing over a decade of experience in digital engineering and business growth.',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+    image: '/lokesh.png',
     socials: {
       linkedin: 'https://www.linkedin.com/in/lokesh-choudhury-67516437a/',
       github: '#',
@@ -100,7 +100,7 @@ export const teamMembers = [
     name: 'Antara Sadhukhan',
     role: 'Associate Partner',
     bio: 'Antara focuses on strategic partnerships and operational excellence, ensuring seamless collaboration between technical teams and business goals.',
-    image: '/female_placeholder.png',
+    image: '/antara.png',
     socials: {
       linkedin: '#',
       github: '#',
@@ -189,7 +189,7 @@ export const teamMembers = [
     name: 'Sandip Majumder',
     role: 'Creative Head',
     bio: 'Sandip oversees the artistic direction at Tag Easy, ensuring every project balances technical power with aesthetic dominance.',
-    image: '/Sandip.jpeg',
+    image: '/sandip.jpg',
     socials: {
       linkedin: '#',
       github: '#',
@@ -205,7 +205,7 @@ export const teamMembers = [
     name: 'Arpita Das',
     role: 'Business Development Manager',
     bio: 'Arpita drives growth and client relations, identifying new opportunities where Tag Easy’s engineering can solve business challenges.',
-    image: '/female_placeholder.png',
+    image: '/arpita.jpg',
     socials: {
       linkedin: '#',
       github: '#',

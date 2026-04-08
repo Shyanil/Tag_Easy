@@ -5,17 +5,23 @@ import { Terminal, ArrowUpRight, Shield, Globe, Zap } from 'lucide-react';
 import Button from '../components/Button';
 
 const SectionContainer = ({ children, className, id }) => (
-  <section id={id} className={cn("bg-black relative overflow-hidden px-4 md:px-6 py-20 md:py-40", className)}>
+  <section id={id} className={cn("bg-black relative overflow-hidden px-4 md:px-6 py-16 md:py-24", className)}>
     <div className="max-w-7xl mx-auto">
       {children}
     </div>
   </section>
 );
 
-const VideoRenderer = ({ project, index }) => {
+const MediaRenderer = ({ project, index }) => {
   const commonClasses = cn(
     "w-full h-full object-cover transition-all duration-700 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110"
   );
+
+  if (project.image) {
+    return (
+      <img src={project.image} alt={project.title} className={commonClasses} />
+    );
+  }
 
   return (
     <video autoPlay loop muted playsInline preload="metadata" className={commonClasses}>
@@ -37,21 +43,21 @@ const CaseStudies = () => {
             cat: "Infrastructure", 
             stats: "400% Growth", 
             icon: Globe,
-            video: 'https://cdn.pixabay.com/vimeo/849315077/architecture-171887.mp4?width=1280&hash=6d4e8b0b9b3e1b0b9b3e1b0b9b3e1b0b9b3e1b0b'
+            image: '/case-studies/metropolitan.png'
         },
         { 
             title: "Bespoke Commerce", 
             cat: "Digital Systems", 
             stats: "98% Efficiency", 
             icon: Zap,
-            video: 'https://cdn.pixabay.com/vimeo/912128311/code-174883.mp4?width=1280&hash=6d4e8b0b9b3e1b0b9b3e1b0b9b3e1b0b9b3e1b0b'
+            image: '/case-studies/commerce.png'
         },
         { 
             title: "Legacy Migration", 
             cat: "Engineering", 
-            stats: "0 Downtime", 
+            stats: "99% Uptime", 
             icon: Shield,
-            video: 'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4'
+            image: '/case-studies/migration.png'
         }
     ];
 
@@ -59,7 +65,7 @@ const CaseStudies = () => {
     <main className="bg-black pt-20">
       <div className="absolute inset-0 bg-noise opacity-10 pointer-events-none z-50 mix-blend-overlay" />
       
-      <header className="pt-24 md:pt-40 pb-20 px-6 max-w-7xl mx-auto text-center">
+      <header className="pt-16 md:pt-24 pb-16 px-6 max-w-7xl mx-auto text-center">
         <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -88,7 +94,7 @@ const CaseStudies = () => {
             >
               <GlassCard className="group flex flex-col justify-between !p-0 overflow-hidden">
                 <div className="aspect-[16/10] relative overflow-hidden pointer-events-none border-b border-white/5">
-                  <VideoRenderer project={p} index={i} />
+                  <MediaRenderer project={p} index={i} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent pointer-events-none" />
                 </div>
                 <div className="p-10 flex-1 flex flex-col justify-between">
@@ -109,7 +115,7 @@ const CaseStudies = () => {
         </div>
       </SectionContainer>
 
-      <SectionContainer className="pt-0 pb-40">
+      <SectionContainer className="pt-0 pb-24">
         <div className="liquid-glass rounded-[3rem] md:rounded-[5rem] p-12 md:p-24 text-center relative group overflow-hidden border border-white/5 hover:border-red-500/30 transition-all duration-1000">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(239,68,68,0.1)_0%,_transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
           <h2 className="text-4xl md:text-7xl text-white tracking-tighter font-instrument mb-12">

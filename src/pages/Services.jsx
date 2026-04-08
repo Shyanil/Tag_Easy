@@ -10,7 +10,7 @@ import Button from '../components/Button';
 import PricingCalculator from '../components/PricingCalculator';
 
 const SectionContainer = ({ children, className, id }) => (
-  <section id={id} className={cn("bg-black relative overflow-hidden px-4 md:px-6 py-20 md:py-40", className)}>
+  <section id={id} className={cn("bg-black relative overflow-hidden px-4 md:px-6 py-16 md:py-24", className)}>
     <div className="max-w-7xl mx-auto">
       {children}
     </div>
@@ -64,7 +64,7 @@ const Services = () => {
     <main className="bg-black pt-20">
       <div className="absolute inset-0 bg-noise opacity-10 pointer-events-none z-50 mix-blend-overlay" />
       
-      <header className="pt-24 md:pt-40 pb-20 px-6 max-w-7xl mx-auto">
+      <header className="pt-16 md:pt-24 pb-16 px-6 max-w-7xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -87,7 +87,7 @@ const Services = () => {
         <PricingCalculator />
       </SectionContainer>
 
-      <SectionContainer className="pt-0 pb-40">
+      <SectionContainer className="pt-0 pb-24">
         <div className="liquid-glass rounded-[3rem] md:rounded-[5rem] p-12 md:p-32 text-center relative group overflow-hidden border border-white/5 hover:border-red-500/30 transition-all duration-1000">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(239,68,68,0.1)_0%,_transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
           

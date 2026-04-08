@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '../lib/utils';
-import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { Mail, Phone, Video, ArrowRight, Calendar } from 'lucide-react';
 import Button from '../components/Button';
 
 const Contact = () => {
@@ -14,7 +14,7 @@ const Contact = () => {
     <main className="bg-black pt-20 overflow-hidden">
       <div className="absolute inset-0 bg-noise opacity-10 pointer-events-none z-50 mix-blend-overlay" />
       
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 py-32 md:py-44 px-6 items-start">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 py-20 md:py-28 px-6 items-start">
         <motion.div 
             initial="hidden"
             animate="visible"
@@ -32,9 +32,9 @@ const Contact = () => {
             
             <div className="space-y-12">
                 {[
-                  { icon: Mail, label: 'Email Architecture', value: 'hello@tageasy.in' },
-                  { icon: Phone, label: 'Voice Link', value: '+91 033 400X XXXX' },
-                  { icon: MapPin, label: 'Physical Node', value: 'Victoria Memorial Vicinity, Kolkata' }
+                  { icon: Mail, label: 'Email', value: 'lokesh.choudhury@tageasy.org' },
+                  { icon: Phone, label: 'Phone', value: '+91 7980761008' },
+                  { icon: Video, label: 'Virtual Node', value: 'Google Meet / Zoom' }
                 ].map((item, i) => (
                   <motion.div key={i} variants={itemVariants} className="flex items-center gap-8 group">
                     <div className="w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center group-hover:neon-red-glow transition-all duration-700">

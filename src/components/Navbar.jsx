@@ -1,14 +1,20 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { cn, getCalendlyUrl } from '../lib/utils';
 import logoT from '../assets/Logo_T.png';
 
 export default function Navbar() {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-3 md:py-5 w-full pointer-events-none">
+    <nav className={cn(
+      isHome ? "fixed" : "sticky",
+      "top-0 left-0 right-0 z-50 px-4 md:px-6 py-3 md:py-5 w-full pointer-events-none"
+    )}>
       <div className={cn(
-        "liquid-glass bg-black/40 rounded-full max-w-5xl mx-auto px-5 md:px-8 py-2 md:py-2.5 flex items-center justify-between pointer-events-auto",
-        "transition-all duration-700 border border-white/5 hover:border-red-500/50 hover:neon-red-glow hover:scale-[1.01]"
+    "liquid-glass bg-black/40 rounded-full max-w-7xl mx-auto px-5 md:px-8 py-2 md:py-2.5 flex items-center justify-between pointer-events-auto",
+    "transition-all duration-700 border border-white/5 hover:border-red-500/50 hover:neon-red-glow hover:scale-[1.01]"
       )}>
         <div className="flex items-center gap-2">
           <NavLink to="/" className="flex items-center hover:scale-105 transition-transform">

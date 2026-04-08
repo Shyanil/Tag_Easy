@@ -5,8 +5,8 @@ import { teamMembers } from '../lib/teamData';
 
 const TeamSection = () => {
   return (
-    <section className="py-16 md:py-32 px-4 md:px-6 bg-black relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.02)_0%,_transparent_70%)] pointer-events-none" />
+    <section className="py-12 md:py-20 px-4 md:px-6 bg-black relative overflow-hidden">
+      <div className="absolute inset-0 bg-noise opacity-30 pointer-events-none mix-blend-overlay" />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-24">
           <motion.h2 

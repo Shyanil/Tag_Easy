@@ -29,11 +29,15 @@
     opacity: 0.12;
     pointer-events: none;
     z-index: 9999;
-    filter: contrast(170%) brightness(130%);
+    filter: contrast(180%) brightness(150%);
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply tracking-[-0.03em] leading-tight font-medium opacity-90;
+    @apply tracking-[-0.03em] leading-tight font-medium opacity-90 transition-colors duration-300;
+  }
+
+  h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover, a:not(.btn):hover, .hover-red:hover {
+    @apply text-red-500 cursor-pointer;
   }
 
   .font-instrument {

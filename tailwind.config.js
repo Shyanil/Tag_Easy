@@ -8,6 +8,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        black: "#0a0303",
         "secondary-fixed-dim": "#cbc5c3",
         "surface-container-highest": "#353534",
         "on-surface": "#e5e2e1",

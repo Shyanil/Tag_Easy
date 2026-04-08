@@ -6,7 +6,7 @@ import { ArrowUpRight } from 'lucide-react';
 import Button from '../components/Button';
 
 const SectionContainer = ({ children, className, id }) => (
-  <section id={id} className={cn("bg-black relative overflow-hidden px-4 md:px-6 py-20 md:py-40", className)}>
+  <section id={id} className={cn("bg-black relative overflow-hidden px-4 md:px-6 py-16 md:py-24", className)}>
     <div className="max-w-7xl mx-auto">
       {children}
     </div>
@@ -24,7 +24,7 @@ const About = () => {
     <main className="bg-black pt-20">
       <div className="absolute inset-0 bg-noise opacity-10 pointer-events-none z-50 mix-blend-overlay" />
       
-      <header className="pt-24 md:pt-40 pb-20 px-6 max-w-7xl mx-auto">
+      <header className="pt-16 md:pt-24 pb-16 px-6 max-w-7xl mx-auto">
         <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ const About = () => {
         </motion.div>
       </header>
 
-      <section className="relative px-6 py-20 overflow-hidden">
+      <section className="relative px-6 py-16 overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
           <div className="lg:col-span-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

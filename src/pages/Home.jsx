@@ -12,7 +12,7 @@ import Button from '../components/Button';
 // --- Sub-components ---
 
 const SectionContainer = ({ children, className, id }) => (
-  <section id={id} className={cn("bg-black relative overflow-hidden px-4 md:px-6 py-20 md:py-40", className)}>
+  <section id={id} className={cn("bg-black relative overflow-hidden px-4 md:px-6 py-16 md:py-24", className)}>
     <div className="max-w-7xl mx-auto">
       {children}
     </div>
@@ -63,6 +63,46 @@ const Hero = () => {
   const [videoOpacity, setVideoOpacity] = useState(0);
   const [showContent, setShowContent] = useState(false);
   const fadeDuration = 500;
+
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus(null), 3000);
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const url = import.meta.env.VITE_GOOGLE_APPS_SCRIPT_URL || "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+      
+      const response = await fetch(url + '?email=' + encodeURIComponent(email), {
+        method: 'POST',
+        mode: 'no-cors',
+      });
+
+      setSubmitStatus('success');
+      setEmail('');
+      setTimeout(() => setSubmitStatus(null), 3000);
+    } catch (error) {
+      console.error("Error submitting email:", error);
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus(null), 3000);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
 
   const animateOpacity = (start, end, duration, callback) => {
     let startTime = null;
@@ -115,12 +155,12 @@ const Hero = () => {
         onEnded={handleEnded}
         muted autoPlay playsInline preload="metadata"
         className="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-1000"
-        style={{ opacity: videoOpacity, filter: 'brightness(0.55)' }}
+        style={{ opacity: videoOpacity, filter: 'brightness(0.85)' }}
       >
         <source src="/Hero Section Tag easy-ezremove.mp4" type="video/mp4" />
       </video>
       
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/70 to-black/95 z-[1] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/90 z-[1] pointer-events-none" />
 
       <div className={cn(
         "relative z-10 flex-1 flex flex-col items-center justify-center px-4 md:px-6 pt-32 md:pt-44 pb-20 text-center transition-all duration-1000",
@@ -149,15 +189,42 @@ const Hero = () => {
           transition={{ duration: 1, delay: 0.4 }}
           className="max-w-md w-full mb-12"
         >
-          <div className="liquid-glass rounded-full pl-6 pr-2 py-2 flex items-center gap-3 group focus-within:neon-red-glow transition-all duration-500">
-            <input
-              type="email"
-              placeholder="Join our network"
-              className="bg-transparent flex-1 text-white placeholder:text-white/30 outline-none text-[11px] font-medium uppercase tracking-widest"
-            />
-            <button className="bg-white rounded-full p-4 text-black hover:scale-105 transition-all shadow-xl active:scale-95 group-hover:neon-white-glow">
-              <ArrowRight className="w-5 h-5" />
-            </button>
+          <div className="relative group/form">
+            <form onSubmit={handleSubmit} className={cn(
+              "liquid-glass rounded-full pl-6 pr-2 py-2 flex items-center gap-3 transition-all duration-500",
+              submitStatus === 'error' ? "border-red-500/50 neon-red-glow" : "group-hover/form:neon-red-glow focus-within:neon-red-glow"
+            )}>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={submitStatus === 'success' ? "Welcome to the network!" : "Join our network"}
+                disabled={isSubmitting || submitStatus === 'success'}
+                className="bg-transparent flex-1 text-white placeholder:text-white/30 outline-none text-[11px] font-medium uppercase tracking-widest disabled:opacity-50"
+              />
+              <button 
+                type="submit"
+                disabled={isSubmitting || submitStatus === 'success'}
+                className={cn(
+                  "rounded-full p-4 transition-all shadow-xl active:scale-95 disabled:opacity-50",
+                  submitStatus === 'success' ? "bg-green-500 text-white" : "bg-white text-black hover:scale-105 group-hover/form:neon-white-glow"
+                )}
+              >
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            </form>
+            <AnimatePresence>
+              {submitStatus === 'error' && (
+                <motion.p 
+                  initial={{ opacity: 0, y: -10 }} 
+                  animate={{ opacity: 1, y: 0 }} 
+                  exit={{ opacity: 0 }}
+                  className="absolute -bottom-6 left-0 right-0 text-red-500 text-[10px] uppercase font-bold tracking-widest text-center"
+                >
+                  Invalid email or connection error
+                </motion.p>
+              )}
+            </AnimatePresence>
           </div>
         </motion.div>
 
@@ -205,7 +272,7 @@ const AdamsalveMockup = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <SectionContainer className="bg-black pt-40 pb-20">
+    <SectionContainer className="bg-black pt-24 pb-16">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
         <div className="lg:col-span-5 space-y-10">
           <motion.div
@@ -320,7 +387,7 @@ const StatsBento = () => {
   ];
 
   return (
-    <SectionContainer className="pt-0 pb-40">
+    <SectionContainer className="pt-0 pb-24">
       <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 h-auto md:h-[700px]">
         {stats.map((s, i) => (
           <motion.div
@@ -363,7 +430,7 @@ const AboutSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} id="about" className="bg-black pt-40 md:pt-60 pb-20 px-6 overflow-hidden relative">
+    <section ref={ref} id="about" className="bg-black pt-24 md:pt-32 pb-16 px-6 overflow-hidden relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(239,68,68,0.05)_0%,_transparent_70%)] pointer-events-none" />
       <div className="max-w-6xl mx-auto">
         <motion.span
@@ -442,7 +509,7 @@ const BentoServices = () => {
   };
 
   return (
-    <SectionContainer id="services" className="pb-40">
+    <SectionContainer id="services" className="pb-24">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-24 gap-8">
         <h2 className="text-5xl md:text-8xl text-white tracking-tighter font-instrument leading-none">
           Technical <span className="text-white/20">Prowess</span>
@@ -483,7 +550,7 @@ const BentoServices = () => {
 
 const InteractiveCTA = () => {
   return (
-    <SectionContainer className="pb-40">
+    <SectionContainer className="pb-24">
       <div className="liquid-glass rounded-[3rem] md:rounded-[5rem] p-12 md:p-32 text-center relative group overflow-hidden border border-white/5 hover:border-red-500/30 transition-all duration-1000">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(239,68,68,0.1)_0%,_transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
         
