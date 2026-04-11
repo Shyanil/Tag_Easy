@@ -392,7 +392,7 @@ const PricingCalculator = () => {
 
             <div className="p-8 rounded-3xl bg-white/[0.03] border border-white/5 relative overflow-hidden group/total">
               <div className="absolute inset-0 bg-red-500/5 opacity-0 group-hover/total:opacity-100 transition-opacity duration-1000" />
-              <div className="relative text-7xl font-instrument text-white mb-2 tracking-tighter">
+              <div className="relative text-5xl md:text-7xl font-instrument text-white mb-2 tracking-tighter">
                 {formatPrice(totalEstimate)}
                 {selectedPkg.isPlus && <span className="text-white/20">+</span>}
               </div>

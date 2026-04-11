@@ -80,8 +80,8 @@ export const teamMembers = [
     ]
   },
   {
-    slug: 'Sam B',
-    name: 'Sam  B.',
+    slug: 'sam-b',
+    name: 'Sam B.',
     role: 'Co-Founder + QA Engineer Head',
     bio: 'Sam ensures the highest quality standards for all our deployments, overseeing complex QA architectures and testing workflows.',
     image: '/sam-b-qa-engineer.jpeg',
@@ -186,8 +186,8 @@ export const teamMembers = [
     }
   },
   {
-    slug: 'arpita-das',
-    name: 'Arpita DUTTA',
+    slug: 'arpita-dutta',
+    name: 'Arpita Dutta',
     role: 'Business Development Manager',
     bio: 'Arpita drives growth and client relations, identifying new opportunities where Tag Easy’s engineering can solve business challenges.',
     image: '/arpita-business-development.jpg',

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { cn, getCalendlyUrl } from '../lib/utils';
 import { Terminal, ArrowUpRight, Shield, Globe, Zap } from 'lucide-react';
@@ -16,6 +17,16 @@ const MediaRenderer = ({ project, index }) => {
   const commonClasses = cn(
     "w-full h-full object-cover transition-all duration-700 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110"
   );
+
+  if (project.textHero) {
+    return (
+      <div className="w-full h-full bg-red-500/5 flex items-center justify-center transition-all duration-700 border border-red-500/10 group-hover:bg-red-500/10">
+        <h2 className="text-5xl md:text-[6rem] lg:text-[8rem] font-instrument text-white/40 tracking-tighter group-hover:text-white transition-all duration-700 group-hover:scale-110 drop-shadow-2xl">
+          {project.textHero}
+        </h2>
+      </div>
+    );
+  }
 
   if (project.image) {
     return (
@@ -38,6 +49,14 @@ const GlassCard = ({ children, className }) => (
 
 const CaseStudies = () => {
     const projects = [
+        { 
+            title: "Maatritva IVF", 
+            cat: "Healthcare Scale", 
+            stats: "#1 Regional", 
+            icon: Globe,
+            textHero: "MAATRITVA",
+            link: '/case-studies/maatritva'
+        },
         { 
             title: "Metropolitan Scale", 
             cat: "Infrastructure", 
@@ -83,36 +102,90 @@ const CaseStudies = () => {
       </header>
 
       <SectionContainer className="pt-0">
+        {(() => {
+          const FeaturedIcon = projects[0].icon;
+          return (
+            <>
+              {/* Featured Project */}
+              <div className="mb-16">
+          <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+          >
+            <Link to={projects[0].link} className="block h-full cursor-pointer">
+              <GlassCard className="group flex flex-col md:flex-row !p-0 overflow-hidden border-red-500/20 hover:border-red-500/60 shadow-[0_0_50px_rgba(239,68,68,0.1)]">
+                <div className="w-full md:w-3/5 lg:w-2/3 aspect-[16/10] md:aspect-auto relative overflow-hidden pointer-events-none border-b md:border-b-0 md:border-r border-white/5">
+                <MediaRenderer project={projects[0]} index={0} />
+                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-black via-black/20 to-transparent pointer-events-none" />
+              </div>
+              <div className="p-10 md:p-16 flex-1 flex flex-col justify-center relative">
+                <div className="absolute top-0 right-0 p-8 text-white/5 pointer-events-none group-hover:text-red-500/10 transition-colors duration-1000">
+                  <FeaturedIcon className="w-32 h-32" />
+                </div>
+                <div className="relative z-10">
+                    <span className="text-red-500 text-[10px] uppercase font-semibold tracking-[0.4em] block mb-6">{projects[0].cat} &bull; FULL PROTOCOL</span>
+                    <h3 className="text-5xl md:text-7xl text-white font-instrument mb-6 tracking-tighter group-hover:translate-x-2 transition-transform duration-500">{projects[0].title}</h3>
+                    <p className="text-white/40 text-lg md:text-xl font-light mb-12">Want results like them on your domain? Why not. Discover how we scaled them to become the most successful in Kolkata.</p>
+                </div>
+                <div className="flex justify-between items-center mt-auto relative z-10">
+                    <span className="text-white text-4xl md:text-5xl font-instrument italic tracking-tighter group-hover:text-red-500 transition-colors uppercase">{projects[0].stats}</span>
+                    <Button variant="primary" className="!px-6 !py-4 text-[10px] tracking-widest bg-red-500/10 text-red-500 border border-red-500/20 group-hover:bg-red-500 group-hover:text-white transition-all duration-500">
+                        READ PROTOCOL <ArrowUpRight className="w-4 h-4 ml-2 inline" />
+                    </Button>
+                </div>
+              </div>
+              </GlassCard>
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Other Projects */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {projects.map((p, i) => (
-            <motion.div 
-                key={p.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1, duration: 0.8 }}
-                viewport={{ once: true }}
-            >
+          {projects.slice(1).map((p, i) => {
+            const CardContent = (
               <GlassCard className="group flex flex-col justify-between !p-0 overflow-hidden">
                 <div className="aspect-[16/10] relative overflow-hidden pointer-events-none border-b border-white/5">
-                  <MediaRenderer project={p} index={i} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent pointer-events-none" />
+                <MediaRenderer project={p} index={i + 1} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent pointer-events-none" />
+              </div>
+              <div className="p-10 flex-1 flex flex-col justify-between">
+                <div>
+                    <span className="text-white/30 text-[10px] uppercase font-semibold tracking-[0.4em] block mb-6">{p.cat}</span>
+                    <h3 className="text-3xl lg:text-4xl text-white font-instrument mb-8 group-hover:translate-x-2 transition-transform duration-500">{p.title}</h3>
                 </div>
-                <div className="p-10 flex-1 flex flex-col justify-between">
-                  <div>
-                      <span className="text-red-500 text-[10px] uppercase font-semibold tracking-[0.4em] block mb-6">{p.cat}</span>
-                      <h3 className="text-4xl text-white font-instrument mb-8 group-hover:translate-x-2 transition-transform duration-500">{p.title}</h3>
-                  </div>
-                  <div className="flex justify-between items-center mt-10">
-                      <span className="text-white text-3xl font-instrument italic tracking-tighter group-hover:text-red-500 transition-colors uppercase">{p.stats}</span>
-                      <Button variant="tertiary" className="!p-0">
-                          <ArrowUpRight className="w-6 h-6 text-white/20 group-hover:text-red-500 transition-colors" />
-                      </Button>
-                  </div>
+                <div className="flex justify-between items-center mt-10">
+                    <span className="text-white/80 text-2xl lg:text-3xl font-instrument italic tracking-tighter group-hover:text-red-500 transition-colors uppercase">{p.stats}</span>
                 </div>
+              </div>
               </GlassCard>
-            </motion.div>
-          ))}
+            );
+
+            return (
+              <motion.div 
+                  key={p.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1, duration: 0.8 }}
+                  viewport={{ once: true }}
+              >
+                {p.link ? (
+                  <Link to={p.link} className="block h-full cursor-pointer">
+                    {CardContent}
+                  </Link>
+                ) : (
+                  <div className="h-full cursor-default">
+                    {CardContent}
+                  </div>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
+            </>
+          );
+        })()}
       </SectionContainer>
 
       <SectionContainer className="pt-0 pb-24">

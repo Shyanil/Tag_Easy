@@ -5,6 +5,7 @@ import {
   Phone, Server, Cpu, Zap, BarChart3, Clock, Linkedin,
   ShieldCheck, LayoutDashboard, Monitor, Brain
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Spline from '@splinetool/react-spline';
 import { cn, getCalendlyUrl } from '../lib/utils';
 import TeamSection from '../components/TeamSection';
@@ -67,11 +68,11 @@ const Hero = () => {
   const [showContent, setShowContent] = useState(false);
   const fadeDuration = 500;
 
-  // Show UI after 10s delay
+  // Show UI after 5s delay
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowContent(true);
-    }, 10000);
+    }, 5000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -86,7 +87,7 @@ const Hero = () => {
     
     setTimeout(() => {
       setShowContent(true);
-    }, 10000);
+    }, 5000);
   };
 
   const handleEnded = () => {
@@ -130,8 +131,8 @@ const Hero = () => {
           <span className="text-red-500 text-[10px] uppercase font-semibold tracking-[0.4em] mb-8 block drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]">
             Creative Engineering Lab
           </span>
-          <h1 className="text-4xl md:text-7xl lg:text-[7.5rem] text-white tracking-tighter font-instrument mb-12 drop-shadow-2xl leading-[0.85] whitespace-nowrap">
-            Scale Revenue With<br/>Data-Driven Engineering
+          <h1 className="text-4xl md:text-7xl lg:text-[7.5rem] text-white tracking-tighter font-instrument mb-12 drop-shadow-2xl leading-[0.85]">
+            Want Explosive Growth?
           </h1>
           <p className="text-white/40 text-xl md:text-2xl font-light max-w-2xl mx-auto mb-16 leading-relaxed hover:text-white/80 transition-colors duration-500">
             We architect high-performance digital ecosystems, Ads Hub dominance, and modular AI integrations for the next wave of global brands.
@@ -201,9 +202,6 @@ const Hero = () => {
       >
         <a href="https://www.linkedin.com/company/tag-easy/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-red-500 hover:scale-125 transition-all duration-300">
           <Linkedin className="w-5 h-5" />
-        </a>
-        <a href="https://www.instagram.com/lokesh_choudhury_92/" target="_blank" rel="noopener noreferrer" className="text-white/20 hover:text-red-500 hover:scale-125 transition-all duration-300">
-          <Instagram className="w-5 h-5" />
         </a>
         <a href="/" className="text-white/20 hover:text-red-500 hover:scale-125 transition-all duration-300">
           <Globe className="w-5 h-5" />
@@ -749,6 +747,61 @@ const TestimonialsSection = () => {
   );
 };
 
+// --- Success Story Banner ---
+
+const SuccessStoryMaatritva = () => {
+  return (
+    <SectionContainer className="py-24">
+      <div className="liquid-glass rounded-[3rem] md:rounded-[4rem] border border-white/5 p-8 md:p-16 flex flex-col md:flex-row items-center gap-12 group hover:border-red-500/30 transition-colors duration-1000 relative overflow-hidden backdrop-blur-3xl shadow-[0_0_100px_rgba(239,68,68,0.05)]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(239,68,68,0.1)_0%,_transparent_70%)] pointer-events-none" />
+        
+        <div className="w-full md:w-5/12 aspect-square md:aspect-auto md:h-[400px] bg-black border border-white/5 rounded-3xl flex items-center justify-center grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 relative overflow-hidden">
+            <img src="/Maatritva.png" alt="Maatritva IVF" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,_transparent_0%,_black_90%)] opacity-40 mix-blend-multiply" />
+        </div>
+        
+        <div className="w-full md:w-7/12 space-y-6 relative z-10">
+            <motion.span 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="text-red-500 text-[10px] uppercase font-bold tracking-[0.4em] block drop-shadow-md"
+            >
+               Success Story &bull; #1 Regional Dominance
+            </motion.span>
+            <motion.h3 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-6xl lg:text-7xl text-white font-instrument mb-6 tracking-tighter leading-[0.9]"
+            >
+                Very Big In <br /><span className="text-white/20 italic">Kolkata</span>
+            </motion.h3>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-white/40 text-lg md:text-xl leading-relaxed font-light mb-10 max-w-xl group-hover:text-white/80 transition-colors duration-500"
+            >
+                Maatritva Fertility IVF sits at the top of our portfolio. Discover how we architected their multi-domain strategy maatritvaivffertility.com and dedicated doctor workflows to systematically capture massive high-intent medical inquiries.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <Link to="/case-studies/maatritva">
+                  <Button variant="secondary" className="px-10 py-5 text-[10px] tracking-widest gap-2 bg-white/5 hover:bg-white/10 group-hover:border-red-500/50 transition-all">
+                      VIEW FULL CASE STUDY <ArrowUpRight className="w-4 h-4 ml-1 text-white/50 group-hover:text-red-500 transition-colors" />
+                  </Button>
+              </Link>
+            </motion.div>
+        </div>
+      </div>
+    </SectionContainer>
+  );
+};
+
 const InteractiveCTA = () => {
   return (
     <SectionContainer className="pb-24">
@@ -811,6 +864,7 @@ const Home = () => {
       <TeamSection />
       <WhyBetterSection />
       <TestimonialsSection />
+      <SuccessStoryMaatritva />
       <InteractiveCTA />
     </main>
   );

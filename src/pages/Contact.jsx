@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../lib/utils';
-import { Mail, Phone, Video, ArrowRight, Calendar } from 'lucide-react';
+import { Mail, Phone, Video, ArrowRight, Calendar, User, Building, Briefcase, MessageSquare, Send } from 'lucide-react';
 import Button from '../components/Button';
 import { submitToWebhook } from '../lib/submitForm';
 
@@ -92,43 +92,68 @@ const Contact = () => {
           className="liquid-glass p-12 md:p-16 rounded-[3rem] border border-white/5 relative aura-card group hover:border-red-500/50 hover:bg-black/60 hover:backdrop-blur-2xl transition-all duration-700"
         >
             <h3 className="text-4xl font-instrument text-white mb-12 tracking-tighter">Brief Acquisition</h3>
-            <form onSubmit={handleSubmit} className="space-y-10 relative">
-                <div className="relative group/input">
-                    <input type="text" value={name} onChange={e => setName(e.target.value)} required disabled={isSubmitting} className="w-full bg-white/5 border-b border-white/40 py-5 px-4 text-white outline-none focus:border-red-500 transition-all font-light placeholder:text-white/50 text-lg" placeholder="NAME"/>
-                    <div className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-red-500 group-focus-within/input:w-full transition-all duration-700 shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
+            <form onSubmit={handleSubmit} className="space-y-6 relative mt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="relative group/input shadow-sm">
+                        <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                            <User className="h-4 w-4 text-white/30 group-focus-within/input:text-red-500 transition-colors duration-500" />
+                        </div>
+                        <input type="text" value={name} onChange={e => setName(e.target.value)} required disabled={isSubmitting} className="w-full bg-white/[0.02] hover:bg-white/[0.04] border border-white/10 rounded-2xl py-4 pl-12 pr-5 text-white outline-none focus:border-red-500/50 focus:bg-white/[0.05] transition-all duration-500 font-light placeholder:text-white/20 text-sm focus:ring-4 focus:ring-red-500/10 backdrop-blur-md" placeholder="Full Name"/>
+                    </div>
+                    <div className="relative group/input shadow-sm">
+                        <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                            <Building className="h-4 w-4 text-white/30 group-focus-within/input:text-red-500 transition-colors duration-500" />
+                        </div>
+                        <input type="text" value={company} onChange={e => setCompany(e.target.value)} disabled={isSubmitting} className="w-full bg-white/[0.02] hover:bg-white/[0.04] border border-white/10 rounded-2xl py-4 pl-12 pr-5 text-white outline-none focus:border-red-500/50 focus:bg-white/[0.05] transition-all duration-500 font-light placeholder:text-white/20 text-sm focus:ring-4 focus:ring-red-500/10 backdrop-blur-md" placeholder="Company Name"/>
+                    </div>
                 </div>
-                <div className="relative group/input">
-                    <input type="text" value={company} onChange={e => setCompany(e.target.value)} disabled={isSubmitting} className="w-full bg-white/5 border-b border-white/40 py-5 px-4 text-white outline-none focus:border-red-500 transition-all font-light placeholder:text-white/50 text-lg" placeholder="COMPANY"/>
-                    <div className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-red-500 group-focus-within/input:w-full transition-all duration-700 shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="relative group/input shadow-sm">
+                        <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                            <Briefcase className="h-4 w-4 text-white/30 group-focus-within/input:text-red-500 transition-colors duration-500" />
+                        </div>
+                        <input type="text" value={role} onChange={e => setRole(e.target.value)} disabled={isSubmitting} className="w-full bg-white/[0.02] hover:bg-white/[0.04] border border-white/10 rounded-2xl py-4 pl-12 pr-5 text-white outline-none focus:border-red-500/50 focus:bg-white/[0.05] transition-all duration-500 font-light placeholder:text-white/20 text-sm focus:ring-4 focus:ring-red-500/10 backdrop-blur-md" placeholder="Your Role"/>
+                    </div>
+                    <div className="relative group/input shadow-sm">
+                        <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                            <Phone className="h-4 w-4 text-white/30 group-focus-within/input:text-red-500 transition-colors duration-500" />
+                        </div>
+                        <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} disabled={isSubmitting} className="w-full bg-white/[0.02] hover:bg-white/[0.04] border border-white/10 rounded-2xl py-4 pl-12 pr-5 text-white outline-none focus:border-red-500/50 focus:bg-white/[0.05] transition-all duration-500 font-light placeholder:text-white/20 text-sm focus:ring-4 focus:ring-red-500/10 backdrop-blur-md" placeholder="Phone Number"/>
+                    </div>
                 </div>
-                <div className="relative group/input">
-                    <input type="text" value={role} onChange={e => setRole(e.target.value)} disabled={isSubmitting} className="w-full bg-white/5 border-b border-white/40 py-5 px-4 text-white outline-none focus:border-red-500 transition-all font-light placeholder:text-white/50 text-lg" placeholder="ROLE"/>
-                    <div className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-red-500 group-focus-within/input:w-full transition-all duration-700 shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
+
+                <div className="relative group/input shadow-sm">
+                    <div className="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                        <Mail className="h-4 w-4 text-white/30 group-focus-within/input:text-red-500 transition-colors duration-500" />
+                    </div>
+                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} required disabled={isSubmitting} className="w-full bg-white/[0.02] hover:bg-white/[0.04] border border-white/10 rounded-2xl py-4 pl-12 pr-5 text-white outline-none focus:border-red-500/50 focus:bg-white/[0.05] transition-all duration-500 font-light placeholder:text-white/20 text-sm focus:ring-4 focus:ring-red-500/10 backdrop-blur-md" placeholder="Email Address"/>
                 </div>
-                <div className="relative group/input">
-                    <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} disabled={isSubmitting} className="w-full bg-white/5 border-b border-white/40 py-5 px-4 text-white outline-none focus:border-red-500 transition-all font-light placeholder:text-white/50 text-lg" placeholder="PHONE"/>
-                    <div className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-red-500 group-focus-within/input:w-full transition-all duration-700 shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
+
+                <div className="relative group/input shadow-sm">
+                    <div className="absolute top-5 left-0 pl-5 flex pointer-events-none">
+                        <MessageSquare className="h-4 w-4 text-white/30 group-focus-within/input:text-red-500 transition-colors duration-500" />
+                    </div>
+                    <textarea value={notes} onChange={e => setNotes(e.target.value)} required disabled={isSubmitting} className="w-full bg-white/[0.02] hover:bg-white/[0.04] border border-white/10 rounded-2xl py-4 pl-12 pr-5 text-white outline-none focus:border-red-500/50 focus:bg-white/[0.05] transition-all duration-500 font-light placeholder:text-white/20 text-sm focus:ring-4 focus:ring-red-500/10 backdrop-blur-md h-32 resize-none" placeholder="Project Details..."></textarea>
                 </div>
-                <div className="relative group/input">
-                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} required disabled={isSubmitting} className="w-full bg-white/5 border-b border-white/40 py-5 px-4 text-white outline-none focus:border-red-500 transition-all font-light placeholder:text-white/50 text-lg" placeholder="EMAIL"/>
-                    <div className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-red-500 group-focus-within/input:w-full transition-all duration-700 shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
-                </div>
-                <div className="relative group/input">
-                    <textarea value={notes} onChange={e => setNotes(e.target.value)} required disabled={isSubmitting} className="w-full bg-white/5 border-b border-white/40 py-5 px-4 text-white outline-none focus:border-red-500 transition-all font-light placeholder:text-white/50 text-lg h-40 resize-none" placeholder="NOTES"></textarea>
-                    <div className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-red-500 group-focus-within/input:w-full transition-all duration-700 shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
-                </div>
-                <Button variant="primary" type="submit" disabled={isSubmitting} className="w-full py-6 text-[11px] uppercase tracking-[0.3em] font-bold group">
-                    {isSubmitting ? 'DECODING...' : (submitStatus === 'success' ? 'BRIEF RECEIVED' : 'DECODE BRIEF')} <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" />
+
+                <Button variant="primary" type="submit" disabled={isSubmitting} className="w-full py-5 rounded-2xl text-[11px] uppercase tracking-[0.3em] font-bold group mt-8 relative overflow-hidden bg-white/5 border border-white/10 hover:border-red-500/50">
+                    <div className="flex items-center justify-center gap-3 relative z-10 transition-transform duration-500 group-hover:scale-105">
+                        {isSubmitting ? 'DECODING...' : (submitStatus === 'success' ? 'BRIEF RECEIVED' : 'INITIALIZE PROTOCOL')} 
+                        <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-red-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
                 </Button>
+                
                 <AnimatePresence>
                   {submitStatus === 'error' && (
-                    <motion.p initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="text-red-500 text-[10px] uppercase font-bold tracking-widest text-center absolute -bottom-6 left-0 right-0">
+                    <motion.p initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="text-red-500 text-[10px] uppercase font-bold tracking-widest text-center mt-4 absolute -bottom-8 left-0 right-0">
                       Connection error. Please try again.
                     </motion.p>
                   )}
                   {submitStatus === 'success' && (
-                    <motion.p initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="text-green-500 text-[10px] uppercase font-bold tracking-widest text-center absolute -bottom-6 left-0 right-0">
-                      We will respond shortly
+                    <motion.p initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="text-green-500 text-[10px] uppercase font-bold tracking-widest text-center mt-4 absolute -bottom-8 left-0 right-0">
+                      Protocol initiated successfully. We will respond shortly.
                     </motion.p>
                   )}
                 </AnimatePresence>

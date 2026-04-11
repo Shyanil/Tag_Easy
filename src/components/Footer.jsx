@@ -16,7 +16,6 @@ export default function Footer() {
 
   const socialLinks = [
     { icon: Linkedin, href: 'https://www.linkedin.com/company/tag-easy/posts/?feedView=all', label: 'LinkedIn' },
-    { icon: Instagram, href: 'https://www.instagram.com/lokesh_choudhury_92/', label: 'Instagram' },
   ];
 
   return (
