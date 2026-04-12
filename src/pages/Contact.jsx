@@ -72,13 +72,13 @@ const Contact = () => {
                   { icon: Phone, label: 'Phone', value: '+91 7980761008' },
                   { icon: Video, label: 'Virtual Node', value: 'Google Meet / Zoom' }
                 ].map((item, i) => (
-                  <motion.div key={i} variants={itemVariants} className="flex items-center gap-8 group">
-                    <div className="w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center group-hover:neon-red-glow transition-all duration-700">
-                        <item.icon className="w-6 h-6 text-white/20 group-hover:text-red-500 transition-colors" />
+                  <motion.div key={i} variants={itemVariants} className="flex items-center gap-4 md:gap-8 group">
+                    <div className="w-12 h-12 md:w-16 md:h-16 shrink-0 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center group-hover:neon-red-glow transition-all duration-700">
+                        <item.icon className="w-5 h-5 md:w-6 md:h-6 text-white/20 group-hover:text-red-500 transition-colors" />
                     </div>
-                    <div>
-                        <div className="text-red-500 text-[9px] uppercase font-semibold tracking-[0.3em] mb-2">{item.label}</div>
-                        <div className="text-white text-xl font-light tracking-tight group-hover:text-red-500 transition-colors">{item.value}</div>
+                    <div className="min-w-0">
+                        <div className="text-red-500 text-[9px] uppercase font-semibold tracking-[0.3em] mb-1 md:mb-2">{item.label}</div>
+                        <div className="text-white text-base md:text-xl font-light tracking-tight group-hover:text-red-500 transition-colors break-words leading-relaxed">{item.value}</div>
                     </div>
                   </motion.div>
                 ))}

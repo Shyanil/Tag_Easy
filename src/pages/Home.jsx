@@ -68,11 +68,15 @@ const Hero = () => {
   const [showContent, setShowContent] = useState(false);
   const fadeDuration = 500;
 
-  // Show UI after 5s delay
+  // Show UI after 5s delay on desktop, instantly on mobile
   useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    const delay = isMobile ? 0 : 5000;
+    
     const timer = setTimeout(() => {
       setShowContent(true);
-    }, 5000);
+    }, delay);
+    
     return () => clearTimeout(timer);
   }, []);
 
@@ -80,14 +84,18 @@ const Hero = () => {
     // No longer used
   };
 
-
   const handleCanPlay = () => {
     videoRef.current?.play();
     setVideoOpacity(1);
     
-    setTimeout(() => {
+    const isMobile = window.innerWidth < 768;
+    if (!isMobile) {
+      setTimeout(() => {
+        setShowContent(true);
+      }, 5000);
+    } else {
       setShowContent(true);
-    }, 5000);
+    }
   };
 
   const handleEnded = () => {
@@ -110,7 +118,7 @@ const Hero = () => {
         onCanPlay={handleCanPlay}
         onEnded={handleEnded}
         muted autoPlay playsInline preload="metadata"
-        className="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-1000 will-change-[opacity]"
+        className="hidden md:block absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-1000 will-change-[opacity]"
         style={{ opacity: videoOpacity, filter: 'brightness(0.85)' }}
       >
         <source src="/Hero Section Tag easy-ezremove.mp4" type="video/mp4" />
@@ -187,7 +195,7 @@ const Hero = () => {
             <Phone className="w-4 h-4" />
             Get Free Audit
           </Button>
-          <Button variant="primary" href="https://adamsalve.com" target="_blank" className="px-10">
+          <Button variant="primary" href="https://adamsalve.com" target="_blank" className="px-10 hidden">
             Try Adamsalve
             <ArrowUpRight className="w-4 h-4" />
           </Button>
@@ -226,15 +234,21 @@ const AdamsalveMockup = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-red-500 text-[10px] font-semibold tracking-[0.4em] uppercase block mb-6">Flagship Ecosystem</span>
+            <span className="text-red-500 text-[10px] font-semibold tracking-[0.4em] uppercase block mb-6 flex items-center gap-3">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+              </span>
+              COMING SOON
+            </span>
             <h2 className="text-5xl md:text-8xl text-white tracking-tighter font-instrument mb-12 leading-[0.85]">
               The Intelligence Core
             </h2>
             <p className="text-white/40 text-xl leading-relaxed mb-12 font-light hover:text-white/80 transition-colors duration-500">
-              Adamsalve is a high-fidelity mobile ecosystem engineered for cognitive offloading. It serves as your primary intelligence layer, synchronizing reminders, brand strategy protocols, and modular AI workflows into a single, high-performance interface.
+              Something is cooking. It's really hectic to set up meetings, try to communicate, and rely on assistants that always forget, leaving you frustrated. We're building a system to change the whole concept of reminders—a flawless robotic intelligence core so you never forget things again.
             </p>
             <Button variant="secondary" href="https://adamsalve.com" className="px-12 py-5 text-xs tracking-widest">
-              LAUNCH DISCOVERY
+              JOIN WAITLIST
               <LayoutDashboard className="w-4 h-4 ml-2" />
             </Button>
           </motion.div>
@@ -328,7 +342,7 @@ const StatsBento = () => {
   const stats = [
     { label: "Efficiency Boost", val: "85%", desc: "Automated business workflows.", size: "lg", icon: Zap },
     { label: "Cost Reduction", val: "40%", desc: "Lowered operational overhead.", size: "sm", icon: ShieldCheck },
-    { label: "Daily Active Users", val: "45k", desc: "Scaling across global platforms.", size: "sm", icon: Globe },
+    { label: "Brands Scaled", val: "20+", desc: "Making businesses top-notch in their domain online.", size: "sm", icon: Globe },
     { label: "Engineering Heritage", val: "10Y+", desc: "A decade of performance focus.", size: "md", icon: Clock },
   ];
 
@@ -828,7 +842,7 @@ const InteractiveCTA = () => {
             >
               CLAIM YOUR FREE AUDIT
             </Button>
-            <Button variant="secondary" href="https://adamsalve.com" className="px-16 py-6 text-xs tracking-[0.2em]">
+            <Button variant="secondary" href="https://adamsalve.com" className="px-16 py-6 text-xs tracking-[0.2em] hidden">
               TRY ADAMSALVE
             </Button>
           </div>
@@ -858,13 +872,13 @@ const Home = () => {
       <PioneeringIdeas />
       <BrandMarquee />
 
-      <AdamsalveMockup />
       <StatsBento />
       <BentoServices />
       <TeamSection />
       <WhyBetterSection />
       <TestimonialsSection />
       <SuccessStoryMaatritva />
+      <AdamsalveMockup />
       <InteractiveCTA />
     </main>
   );

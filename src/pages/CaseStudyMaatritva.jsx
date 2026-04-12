@@ -22,11 +22,11 @@ const CaseStudyMaatritva = () => {
       
       {/* Hero Section */}
       <header className="pt-16 md:pt-28 pb-16 px-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-5xl"
         >
             <span className="text-red-500 text-[10px] font-semibold tracking-[0.4em] uppercase block mb-8 flex items-center gap-3">
               <Award className="w-4 h-4" /> Healthcare Excellence
@@ -35,23 +35,34 @@ const CaseStudyMaatritva = () => {
                 Maatritva <br />
                 <span className="text-white/20">Fertility IVF</span>
             </h1>
-            <p className="text-white/40 text-2xl max-w-3xl font-light leading-relaxed hover:text-white/80 transition-colors duration-500 mb-12">
+            <p className="text-white/40 text-2xl font-light leading-relaxed hover:text-white/80 transition-colors duration-500 mb-12">
                 Dominating the regional landscape as the #1 IVF Center in Kolkata and beyond. A story of digital infrastructure mapping precisely to clinical success.
             </p>
             
-            <div className="flex flex-wrap gap-4">
-              <a href="https://maatritvaivffertility.com/" target="_blank" rel="noopener noreferrer">
-                <Button variant="secondary" className="px-8 py-4 text-[10px] tracking-widest gap-2">
-                  <Globe className="w-4 h-4" /> maatritvaivffertility.com
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+              <a href="https://maatritvaivffertility.com/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                <Button variant="secondary" className="w-full sm:w-auto px-8 py-4 text-[10px] tracking-widest gap-2 justify-center">
+                  <Globe className="w-4 h-4 shrink-0" /> maatritvaivffertility.com
                 </Button>
               </a>
-              <a href="https://www.maatritvaivf.com/" target="_blank" rel="noopener noreferrer">
-                <Button variant="secondary" className="px-8 py-4 text-[10px] tracking-widest gap-2">
-                  <Globe className="w-4 h-4" /> maatritvaivf.com
+              <a href="https://www.maatritvaivf.com/" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+                <Button variant="secondary" className="w-full sm:w-auto px-8 py-4 text-[10px] tracking-widest gap-2 justify-center">
+                  <Globe className="w-4 h-4 shrink-0" /> maatritvaivf.com
                 </Button>
               </a>
             </div>
         </motion.div>
+
+        <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden border border-white/5 relative group bg-black"
+        >
+            <img src="/Maatritva.png" alt="Maatritva IVF" className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+        </motion.div>
+        </div>
       </header>
 
       {/* Metrics Row */}

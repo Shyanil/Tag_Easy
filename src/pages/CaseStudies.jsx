@@ -54,7 +54,7 @@ const CaseStudies = () => {
             cat: "Healthcare Scale", 
             stats: "#1 Regional", 
             icon: Globe,
-            textHero: "MAATRITVA",
+            image: "/Maatritva.png",
             link: '/case-studies/maatritva'
         },
         { 
@@ -129,9 +129,9 @@ const CaseStudies = () => {
                     <h3 className="text-5xl md:text-7xl text-white font-instrument mb-6 tracking-tighter group-hover:translate-x-2 transition-transform duration-500">{projects[0].title}</h3>
                     <p className="text-white/40 text-lg md:text-xl font-light mb-12">Want results like them on your domain? Why not. Discover how we scaled them to become the most successful in Kolkata.</p>
                 </div>
-                <div className="flex justify-between items-center mt-auto relative z-10">
-                    <span className="text-white text-4xl md:text-5xl font-instrument italic tracking-tighter group-hover:text-red-500 transition-colors uppercase">{projects[0].stats}</span>
-                    <Button variant="primary" className="!px-6 !py-4 text-[10px] tracking-widest bg-red-500/10 text-red-500 border border-red-500/20 group-hover:bg-red-500 group-hover:text-white transition-all duration-500">
+                <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center gap-6 mt-10 md:mt-auto relative z-10">
+                    <span className="text-white text-4xl md:text-5xl font-instrument italic tracking-tighter group-hover:text-red-500 transition-colors uppercase shrink-0">{projects[0].stats}</span>
+                    <Button variant="primary" className="!px-6 !py-4 text-[10px] tracking-widest bg-red-500/10 text-red-500 border border-red-500/20 group-hover:bg-red-500 group-hover:text-white transition-all duration-500 w-full sm:w-auto shrink-0 justify-center">
                         READ PROTOCOL <ArrowUpRight className="w-4 h-4 ml-2 inline" />
                     </Button>
                 </div>
